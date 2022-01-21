@@ -1,9 +1,9 @@
 # SOEN341_Team3
 
-DESCRIPTION: 
+## DESCRIPTION: 
 This project is a simplified version of Amazon website (online shopping).
 
-TEAM MEMBERS:
+## TEAM MEMBERS:
 Patrick Keenan - 40175307
 Christos Karabatsos - 40132730
 Emanuelle Ranaldi - 40083589
