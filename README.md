@@ -25,10 +25,11 @@ Melissa Panaccione - 40182167 - Melisa1026
 ## Techniques
 Front-End:
 
--HTML - CSS -Javascript -PHP
+-HTML - CSS -Javascript -React
 
 Back-end:
 
 Server requests(how data is stored in database)
+-Node -Firebase (database)
 
 
