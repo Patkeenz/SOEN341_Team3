@@ -32,11 +32,16 @@ Server requests(how data is stored in database)
 
 ## OBJECTIVE
 
-The objective of this project is to create a website similar to Amazon with three core features browsing for available items, adding items to the shopping chart and checking out. The website will need to be used by admins such as people selling the items and, normal users people shopping and browsing for items. As the project progresses and the team notices more features that may improve the users experience more features will be added to the website.
+The objective of this project is to create a website similar to Amazon with three core features browsing for available items, adding items to the shopping chart and checking out. The website will need to be used by admins such as people selling the items, and normal users people shopping and browsing for items. An additional feature is required that will complement the website’s three core features. Following proper software engineering practices, the Agile method will be used to document the program development process. The team members will contribute to the program and collaborate using Github.
 
-# CORE FEATURES
-1) Browsing Items
-2) Adding items to the shopping cart
-3) Checking out
+## CORE FEATURES
+1) The first core feature, must allow the admin or user to login if they already have an account or register for a new account. The sellers must be able add items for sale. The buyers must be able to look through the items on the website and browse by category. In addition, the user should be able to check the product’s details.
+
+2) As a second feature, the program allows the user to select a product quantity and add it to the cart. In addition, the product may be removed from the cart or its quantity changed.
+
+3) The third core feature is the checking out process. The user will have to add a payment method to finalize his purchase. The program will display the receipt (subtotal, tax, and shipping fees). This user is able to view or cancel his orders.
+
+
+
 
 
