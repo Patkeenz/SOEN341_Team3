@@ -18,7 +18,7 @@ George El Haddad - 40076849 - George-hdd
 
 Zain Mushtaq - 40177427 
 
-Melissa Panaccione - 40182167 - Melisa1026
+Melisa Panaccione - 40182167 - Melisa1026
 
 ## Techniques
 Front-End:
