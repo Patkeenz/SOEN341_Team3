@@ -20,6 +20,11 @@ const Navbar = () => {
               Sign up 
             </button>
           </Link>
+          <Link to="/checkout">
+            <button>
+              checkout
+            </button>
+          </Link>
             </div>
         </nav>
     )

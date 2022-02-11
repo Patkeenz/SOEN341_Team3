@@ -5,6 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import Navbar from './Navbar'
 import Home from './Home'
+import Checkout from './Checkout'
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <Signup/>
+          </Route>
+          <Route path="/checkout">
+            <Checkout/>
           </Route>
         </Switch>
       </div>
