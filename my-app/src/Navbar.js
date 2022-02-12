@@ -25,6 +25,11 @@ const Navbar = () => {
               checkout
             </button>
           </Link>
+          <Link to="/addproduct">
+            <button>
+              Add Product
+            </button>
+          </Link>
             </div>
         </nav>
     )
