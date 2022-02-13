@@ -44,7 +44,8 @@ const Product = () => {
         <input type="text" name="price" placeholder="Product Price" id="price" />
         <br></br>
         <input type="text" name="description" placeholder="Product Description" id="description"/>
-        <select id="category" placeholder= "Select a Category">
+        <select id="category">
+        <option value = "" selected disabled hidden>Choose a Product Category</option>
         <option value="monitor">monitor</option>
         <option value="audio">audio</option>
         <option value="peripherals">peripherals</option>
@@ -54,7 +55,7 @@ const Product = () => {
         <input type="file" onChange={handleChange}/>
         {/* Insert an image here */}       
         <br></br>
-        <button type="button" onClick={handleUpload}>Add Product</button>
+        <button type="submit" onClick={handleUpload}>Add Product</button>
     </form>
     </div>   
         );
