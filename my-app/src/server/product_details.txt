@@ -41,7 +41,7 @@ FreeSync compatible
 The height, pivot and swivel are all adjustable. 
 	
 
-Img5_monitor_LG
+Img5_monitor_LG **
 	TITLE: LG 22EA430V-B 21.5’ 75hz 1080p monitor (open box)
 	PRICE: 157.27
 	PRODUCT DETAILS: 
@@ -68,7 +68,7 @@ Frequency response from 4hz to 40000 Hz which delivers a clean yet powerful soun
 Touch sensitive controls that allow you to play, pause and skip tracks while also changing audio levels. 
 Up to 30 hours of battery life with a quick charge of 10m giving 5 hours of audio playback. 
 
-Img8_audio_logitech
+Img8_audio_logitech  **
 	TITLE: Logitech 606 5.1 Computer Speaker System
 	PRICE: 174.99$
 	PRODUCT DETAILS: 
@@ -110,7 +110,7 @@ PRICE: 169.99
 Full size mechanical keyboard with GX Brown tactile switches
 RGB lighting 
 Detachable 1.80m vable
-1ms report rate 
+1ms response rate 
 
 Img13_peripherals_LOGITECH
 TITLE: Logitech MX Keys Wireless Backlit Keyboard
@@ -163,6 +163,8 @@ PRICE: 188.87$
 	PRODUCT DETAILS: 
 Black Cherry coloured finish steel frame
 152.4 cm x 139.7 cm x 71.1 cm  (Depth x width x height)
+
+
 Img19_desks_LHD
 TITLE: LHD Lila 43”W Computer Desk with USB Port
 PRICE: 299.99$

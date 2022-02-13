@@ -2,7 +2,6 @@ import uploadProduct from './server/product.js';
 import { useState } from "react";
 import {getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import app from "./server/index.js";
-import Avatar from "@mui/material/Avatar";
 
 const Product = () => {
     const [image, setImage] = useState(null);
