@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = () => {
     return (
@@ -6,24 +8,24 @@ const Navbar = () => {
             <h1>Ecommerce Website</h1>
             <div className="links">
             <Link to="/home">
-            <button>
+            <Button variant="outline-dark">
               Home 
-            </button>
+            </Button>
             </Link>
             <Link to="/login">
-            <button>
+            <Button variant="outline-dark">
               Login 
-            </button>
+            </Button>
           </Link>
           <Link to="/signup">
-            <button>
+            <Button variant="outline-dark">
               Sign up 
-            </button>
+            </Button>
           </Link>
           <Link to="/checkout">
-            <button>
-              checkout
-            </button>
+            <Button variant="outline-dark">
+              Checkout
+            </Button>
           </Link>
           <Link to="/addproduct">
             <button>
