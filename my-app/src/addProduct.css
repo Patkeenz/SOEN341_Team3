@@ -1,0 +1,79 @@
+html
+{
+    background-image: url(images/formBackground.png);
+}
+
+.button
+{
+    position:absolute;
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    margin: auto;
+    height: 40px;
+    width: 130px;
+    background-color: #232B22;
+    color: #F44F6A;
+    border: none;
+    border-radius: 2px;
+}
+
+.redGlowBg
+{
+    position:relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 165px;
+    height: 65px;
+    background-image: url(images/RedGlow.png);
+    background-size: 100% 100%;
+}
+
+.page-header
+{
+    margin: 20px;
+    color: #232B22;
+}
+
+.textbox
+{
+    width: 70%;
+}
+
+.inputSpace 
+{
+    margin: 15px;
+}
+
+.textboxLabel
+{
+    display: block;
+    position: absolute;
+    text-align: left;
+    margin-left: 15%;
+    font-weight: 600;
+}
+
+.product /*div of the entire form and page title*/
+{
+    background-color:  #f8f9fa;
+    position:absolute;
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    margin: auto;
+    margin-top: 100px;
+    height: 75%; /*requires explicit height*/
+    width: 50%;
+    border-radius: 5px;
+    border: 2px solid #F44F6A;
+}
+
+#category
+{
+    margin: 5px;
+    width: 70%;
+}
