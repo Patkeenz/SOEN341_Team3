@@ -1,0 +1,233 @@
+Img1_monitor_benq:
+TITLE: BenQ 24” 1080p IPS Monitor
+PRICE: .183.95$
+PRODUCT DETAILS: 
+Full HD Display with a 1920x1080  resolution IPS panel
+Slim Bezels with a 60hz refresh rate
+Adaptive Brightness that changes brightness based on on-screen content and ambient lighting
+	
+	
+Img2_monitor_dell
+	TITLE: Dell S2716dg 27” 2k 144hz LCD Monitor
+	PRICE: 619.99$
+	PRODUCT DETAILS: 
+WQHD Display with a 2560x1440 resolution IPS panel
+Very Slim Bezels with a 144hz refresh rate anda  1ms response time
+G-Sync Compatible
+Supports HDMI and DisplayPort
+Stand is able to tilt upward & downward as well as sideways by 180 degrees. The stand is also height adjustable
+Pixel pitch of 0.2331mm, 108ppi pixel density
+Supports 7 million colors with a 1000:1 contrast ratio
+
+
+Img3_monitor_samsung
+	TITLE: Samsung R59 32” 4k Curved Monitor	
+	PRICE: 478.00$
+	PRODUCT DETAILS:
+UHD Display with a 3840x2160 resolution IPS panel
+Very Slim Bezels with a 144hz refresh rate and 4ms response time
+16:9 aspect ratio with a 2500:1 contrast ratio and 1500r curvature
+Supports 2xHDMI 
+139ppi pixel density
+
+Img4_monitor_asus
+	TITLE: Asus ROG Strix XG49VQ 49” 144hz Montior
+	PRICE: 1,199.99$
+	PRODUCT DETAILS: 
+Ultrawide DFHD Display with a 3840x1080 resolution LED panel
+Very Slim Bezels with a 144hz refresh rate and 4ms response time
+FreeSync compatible
+16:9 aspect ratio and Supports 2xHDMI 
+The height, pivot and swivel are all adjustable. 
+	
+
+Img5_monitor_LG **
+	TITLE: LG 22EA430V-B 21.5’ 75hz 1080p monitor (open box)
+	PRICE: 157.27
+	PRODUCT DETAILS: 
+IPS Display with a 1920x1080 resolution 
+75hz refresh rate with a 1000:1 contrast ratio and FreeSync support
+Open box product with a reduced price
+
+Img6_audio_apple
+	TITLE: Apple Airpods Pro with MagSafe charging Case 
+	PRICE: 280$
+	PRODUCT DETAILS: 
+- Airpods Pro delivers active noise cancellation and transparency mode
+- The Magsafe Charging Case delivers more than 24 hours of battery life
+- 3 different sizes of flexible silicone tips makes sure they are a comfortable fit
+- High Dynamic range with low distortion and an adaptive EQ
+
+Img7_audio_sony
+	TITLE: Sony WH-1000XM4 Over-Ear Noise Canceling Bluetooth Headphones
+	PRICE: 390$
+	PRODUCT DETAILS:
+Best in class noise canceling software 
+Comfortable over-ear design that provides long lasting comfort
+Frequency response from 4hz to 40000 Hz which delivers a clean yet powerful sound profile
+Touch sensitive controls that allow you to play, pause and skip tracks while also changing audio levels. 
+Up to 30 hours of battery life with a quick charge of 10m giving 5 hours of audio playback. 
+
+Img8_audio_logitech  **
+	TITLE: Logitech 606 5.1 Computer Speaker System
+	PRICE: 174.99$
+	PRODUCT DETAILS: 
+5.1 Channel surround sound with deep bass and clear highs
+Complete system includes a subwoofer, right, left & center channels, and 2 rear satellites.
+Supports Bluetooth as well as wired connections
+
+
+Img9_audio_bose
+	TITLE: Bose SoundLink Color II
+	PRICE: 134.99$
+	PRODUCT DETAILS: 
+Wireless portable Bluetooth headphones with a built in microphone
+Water resistant
+Up to 8 hours of audio playback
+
+Img10_audio_Primecables
+TITLE: Waterproof bluetooth Shower Speaker
+PRICE:  17.99
+	PRODUCT DETAILS: 
+Hands free waterproof wireless speaker. Enjoy listening to your favorite music while taking a shower or bath
+Play/Pause/Power buttons with adjustable volume, aux, built in 400mah battery (4 hours)  with charging, and much more. 
+Able to play FM radio and make calls
+	
+
+Img11_Peripherals_Corsair
+TITLE: Corsair Ironclaw RGB 18000 DPI
+PRICE: 80.19$
+	PRODUCT DETAILS: 
+Wired 
+Gaming specific (additional buttons on mouse).
+1 DPI resolution steps for increase in gaming performance and tracking accuracy.
+Requires AA battery bitches.
+
+Img12_peripherals_Logitech
+TITLE: Logitech x League of Legends Mechanical Keyboard
+PRICE: 169.99
+	PRODUCT DETAILS: 
+Full size mechanical keyboard with GX Brown tactile switches
+RGB lighting 
+Detachable 1.80m vable
+1ms response rate 
+
+Img13_peripherals_LOGITECH
+TITLE: Logitech MX Keys Wireless Backlit Keyboard
+PRICE: 150.19$
+	PRODUCT DETAILS: 
+Wireless/bluetooth for flexible access.
+Spherically-shaped keys to match fingertips.
+Allows to pair up to 3 devices.
+Lightweight and durable.
+
+Img14_peripherals_Duracell
+TITLE: Duracell Power Bank
+PRICE: 28.99$
+	PRODUCT DETAILS: 
+6700mah portable power bank that gives 3x charge for most modern smartphones
+Able to charge 2 devices at once
+LED indicator for battery percentage
+	
+
+Img15_peripherals_Canon
+TITLE: Canon PowerShot G7 X Mark 2 
+PRICE: 770.49$
+	PRODUCT DETAILS: 
+3-inch, 180-degree
+Built in Wi-Fi and NFC
+Durable
+Stunning, detailed images.
+
+Img16_desks_primecables
+TITLE: Motorized Desk (Only legs)
+PRICE: 295.99
+	PRODUCT DETAILS: 
+Black adjustable sit stand desk with a 28.7”-48” height and 45’ width
+Quickly adjust with a touchscreen
+Ideal for long sessions where switching to a standing position can provide blood circulation and reduce soreness
+	
+
+Img17_desks_SHW
+TITLE: SHW 48’ Home Office Desk
+PRICE: 99.99$
+	PRODUCT DETAILS: 
+60.5cm x 121.9cm x 71.1cm (Depth x width x height)
+Modern style with steel frame and wooden top
+Easy to assemble with basic instructions
+	
+
+Img18_desks_SHW
+TITLE: SHW 55” x 60” L-Style Office Desk
+PRICE: 188.87$
+	PRODUCT DETAILS: 
+Black Cherry coloured finish steel frame
+152.4 cm x 139.7 cm x 71.1 cm  (Depth x width x height)
+
+
+Img19_desks_LHD
+TITLE: LHD Lila 43”W Computer Desk with USB Port
+PRICE: 299.99$
+	PRODUCT DETAILS: 
+Elevated hutch for monitor
+Does not require a lot of space
+USB port and charging outlet built-in
+Can easily be set up
+
+Img20_desks_Milo 
+TITLE: Milo Mid Century Modern Computer Desk
+PRICE: 238.99
+	PRODUCT DETAILS: 
+Spacious to have more than one monitor on.
+3 shelves and 2 drawers
+Complements any space to work in.
+Lighter than average desk.
+
+
+Img21_accessories_Xbox
+TITLE: Xbox One Wireless Controller - Fortnite Purple Special edition
+PRICE: 310.29$
+	PRODUCT DETAILS: 
+Wireless
+Chargeable, does not require batteries.
+Sturdy
+Require v-bucks to purchase in fortnite game.
+
+
+Img22_accessories_Fortnite
+TITLE: EXCLUSIVE Fortnite deskmat
+PRICE: 29.99
+	PRODUCT DETAILS: 
+EXCLUSIVE fortnite deskmat 12x24”
+Enjoy playing fortnite with the confidence of fortnite accessories and peripherals
+Hand sown with high quality leather fabric
+	
+
+Img23_accessories_Keycaps
+TITLE: GMK JIS Keycaps
+PRICE: 180.00$
+	PRODUCT DETAILS: 
+Base layout 
+Doubleshot ABS
+Cherry profile
+	
+
+Img24_accessories_Alpaca
+TITLE: Alpaca V2 Linear Switches
+PRICE: 9$
+	PRODUCT DETAILS: 
+1 order is 10 switches
+Top housing is Polycarbonate and bottom housing is Nylon
+62g gold plated strings
+Pre-lubed +
+
+Img25_accessories_Yeti
+TITLE: Blue Yeti Microphone
+PRICE: 162.45
+	PRODUCT DETAILS: 
+High quality Desktop microphone with enhanced vocal clarity and modulation
+Stand is able to pivot
+Mute and volume buttons
+	
+
+	
