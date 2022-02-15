@@ -29,10 +29,10 @@ function App() {
           <Bootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Bootstrap.Navbar.Collapse id="basic-navbar-nav">
             <Bootstrap.Nav className="ms-auto">
-              <Bootstrap.Nav.Link href="/login">Login</Bootstrap.Nav.Link>
-              <Bootstrap.Nav.Link href="/signup">Sign up</Bootstrap.Nav.Link>
-              <Bootstrap.Nav.Link href="/addproduct">Add product</Bootstrap.Nav.Link>
-              <Bootstrap.Navbar.Brand href="/checkout">
+              <Bootstrap.Nav.Link as={Link} to="/login">Login</Bootstrap.Nav.Link>
+              <Bootstrap.Nav.Link as={Link} to="/signup">Sign up</Bootstrap.Nav.Link>
+              <Bootstrap.Nav.Link as={Link} to="/addproduct">Add product</Bootstrap.Nav.Link>
+              <Bootstrap.Navbar.Brand as={Link} to="/checkout">
             <img
             src={blackandred_cart}
             width="40"
@@ -53,7 +53,7 @@ function App() {
         </Bootstrap.Container>
       </Bootstrap.Navbar>
       </header>
-      <div className="App">
+      <div className="wrapper">
         <Switch>
           <Route path="/home">
             <Home/>

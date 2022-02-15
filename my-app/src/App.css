@@ -40,3 +40,8 @@
     transform: rotate(360deg);
   }
 } */
+
+.wrapper {
+  background-image: url('background.png');
+  display: flex;
+}
