@@ -7,7 +7,7 @@ import Signup from './Signup'
 import Navbar from './Navbar'
 import Home from './Home'
 import Checkout from './Checkout'
-import Product from './Product'
+import Product from './AddProduct'
 import * as Bootstrap from 'react-bootstrap'
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
       <header className="App-header">
       <Bootstrap.Navbar className="container-fluid" bg="light" variant="light" expand="lg">
         <Bootstrap.Container>
-          <Bootstrap.Navbar.Brand href="/home">
+          <Bootstrap.Navbar.Brand as ={Link} to="/home">
             <img
             src={logo}
             width="157"

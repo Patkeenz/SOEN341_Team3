@@ -1,7 +1,28 @@
+import showCategory from "./server/browse.js"
+import buildProducts from "./Browse.js"
+import './Home.css';
+
+const categories = ["all", "monitor", "audio", "peripherals", "desks", "accesories"];
+
+var products;
 const Home = () => {
-    return (
-        <div className="home">
-            <h2>Home</h2>
+    buildProducts(false).then(val=>{
+        products = val;
+    });
+    return (   
+        <div className="home" id="main"> 
+              <select id="homecategory">
+              <option value = "" selected disabled hidden>Choose a Product Category</option>
+              <option value="all">All</option>
+              <option value="monitor">Monitor</option>
+              <option value="audio">Audio</option>
+              <option value="peripherals">Peripherals</option>
+              <option value="desks">Desks</option>
+              <option value="accessories">Accesories</option>
+              </select> 
+            <button onClick={()=>showCategory(products)}> Search </button> 
+            <div className="grid-container" id="product-display">
+            </div>         
         </div>
     );
 }
