@@ -2,7 +2,7 @@ import uploadProduct from './server/product.js';
 import { useState } from "react";
 import {getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import app from "./server/index.js";
-import './addProduct.css';
+import './formPages.css';
 
 const Product = () => {
     const [image, setImage] = useState(null);
@@ -37,25 +37,25 @@ const Product = () => {
 
     const categories = ["monitor", "audio", "peripherals", "desks", "accesories"];
     return (
-        <div className="product">
+        <div className="formBoxProduct">
           <h2 className="page-header">Add a Product</h2>
           <form>
             <div className="inputSpace">
-              <label className="textboxLabel" for="nameText">Product Name</label>
+              <label className="textboxLabel" for="name">Product Name</label>
               <br/>
-              <input id="nameText" className="textbox" type="text" name="name" placeholder="Product Name" id="name"/>
-              <br/>
-            </div>
-            <div className="inputSpace">
-              <label className="textboxLabel" for="priceText">Product Price</label>
-              <br/>
-              <input id="priceText" className="textbox" type="text" name="price" placeholder="Product Price" id="price" />
+              <input className="textbox" type="text" name="name" placeholder="Product Name" id="name"/>
               <br/>
             </div>
             <div className="inputSpace">
-              <label className="textboxLabel" for="descriptionText">Product Description</label>
+              <label className="textboxLabel" for="price">Product Price</label>
               <br/>
-              <input id="descriptionText" className="textbox" type="text" name="description" placeholder="Product Description" id="description"/>
+              <input className="textbox" type="text" name="price" placeholder="Product Price" id="price" />
+              <br/>
+            </div>
+            <div className="inputSpace">
+              <label className="textboxLabel" for="description">Product Description</label>
+              <br/>
+              <input className="textbox" type="text" name="description" placeholder="Product Description" id="description"/>
               <br/>
             </div>
             <div className="inputSpace">
