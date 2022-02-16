@@ -2,7 +2,9 @@ import {Form, Button, Card, Container} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './addProduct.css';
 
+
 const Login = () => {
+
     return (
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh"}}>
             <Card className=" d-flex w-100" border="danger" style= {{ maxWidth: "400px"}}>

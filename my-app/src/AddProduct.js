@@ -2,7 +2,7 @@ import handleUpload from './server/addproduct.js';
 import { useState } from "react";
 import './addProduct.css';
 
-const Product = () => {
+const AddProduct = () => {
     const [image, setImage] = useState(null);
 
     const handleChange = e => {
@@ -59,4 +59,4 @@ const Product = () => {
         );
 }
 
-export default Product;
+export default AddProduct;

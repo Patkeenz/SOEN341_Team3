@@ -9,8 +9,10 @@ const Home = () => {
     buildProducts(false).then(val=>{
         products = val;
     });
+
     return (   
         <div className="home" id="main"> 
+        <div className = "buttondrop">
               <select id="homecategory">
               <option value = "" selected disabled hidden>Choose a Product Category</option>
               <option value="all">All</option>
@@ -21,6 +23,7 @@ const Home = () => {
               <option value="accessories">Accesories</option>
               </select> 
             <button onClick={()=>showCategory(products)}> Search </button> 
+            </div>
             <div className="grid-container" id="product-display">
             </div>         
         </div>

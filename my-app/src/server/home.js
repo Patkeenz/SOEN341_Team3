@@ -7,7 +7,7 @@ const db = getDatabase(app);
 
 async function getProducts() {
     const products = [];
-    const collectionRef = ref(db,"Products/");
+    const collectionRef = ref(db,"Products/"); 
     const collectionsnap = await get((collectionRef));
     collectionsnap.forEach(doc=>{
         var name = doc.key;

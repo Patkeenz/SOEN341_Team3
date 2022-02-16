@@ -1,15 +1,4 @@
-table,
-tr,
-th {
-  border: 0.1px solid black;
-}
-table {
-  table-layout: fixed;
-  width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
-}
+
 .grid-container {
   margin-left: 300px;
   margin-right: 300px;
@@ -28,45 +17,6 @@ table {
   text-align: center;
 }
 
-.fortnite {
-  padding-top: 100px;
-}
-.align-fortnite {
-  padding-top: 50px;
-}
-.keycaps {
-  padding-top: 100px;
-}
-.align-keycaps {
-  padding-top: 35px;
-}
-.logitech {
-  padding-top: 60px;
-}
-.align-logitech {
-  padding-top: 40px;
-}
-.canon {
-  padding-top: 80px;
-}
-.align-canon {
-  padding-top: 40px;
-}
-.shw1 {
-  padding-top: 40px;
-}
-.align-shw1 {
-  padding-top: 22px;
-}
-.shw2 {
-  padding-top: 60px;
-}
-.align-shw2 {
-  padding-top: 45px;
-}
-.logitech2 {
-  padding-top: 40px;
-}
-.align-logitech2 {
-  padding-top: 30px;
+.buttondrop {
+ text-align: center;
 }

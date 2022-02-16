@@ -1,4 +1,6 @@
 import getProducts from "./server/home.js"
+import buildProduct from "./server/product.js"
+
 
 async function buildProducts(loaded) {
     if(!loaded){
@@ -19,12 +21,22 @@ async function buildProducts(loaded) {
       p1.innerHTML = product.name;
       let p2 = document.createElement("p");
       p2.innerHTML = product.price+ "$";
+      let button = document.createElement("button");
+      button.setAttribute("id", product.name)
+      button.innerHTML = "Go";
+      button.onclick= function(){
+        buildProduct(this.id, products); //build the product page for this product
+        //navigate to Product.js now...
+        
+      }
       div.appendChild(pic);
       div.appendChild(p1);
       div.appendChild(p2);
+      div.appendChild(button);
       maindiv.appendChild(div);
     }
     return products
   }
+
 
   export default buildProducts;
