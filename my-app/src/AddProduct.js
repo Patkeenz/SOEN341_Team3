@@ -11,8 +11,8 @@ const Product = () => {
       }
     };
 
-
-
+    
+    
 
     const categories = ["monitor", "audio", "peripherals", "desks", "accesories"];
     return (
@@ -48,7 +48,7 @@ const Product = () => {
               </select> 
             </div>
             <div className="inputSpace">
-              <input type="file" onChange={handleChange}/>
+              <input type="file" accept=".png, .jpg, .jpeg" onChange={handleChange}/>
               {/* Insert an image here */}    
             </div> 
             <div className="redGlowBg">
