@@ -37,6 +37,12 @@ async function addUser(usertype){
             var emailDiv = document.getElementById('emailDiv'); 
             emailDiv.className = "invalidInput";
         }
+
+        if(errorMessage == 'Firebase: Error (auth/invalid-email).')
+        {
+            var emailDiv = document.getElementById('emailDiv'); 
+            emailDiv.className = "invalidInput";
+        }
     })
 }
 
