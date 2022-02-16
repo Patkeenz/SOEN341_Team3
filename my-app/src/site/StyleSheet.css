@@ -15,6 +15,7 @@ table {
   grid-template-columns: auto auto auto;
   background-color: #2196f3;
   padding: 10px;
+  left-padding: 100px;
 }
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
@@ -22,4 +23,46 @@ table {
   padding: 20px;
   font-size: 20px;
   text-align: center;
+}
+.fortnite {
+  padding-top: 100px;
+}
+.align-fortnite {
+  padding-top: 50px;
+}
+.keycaps {
+  padding-top: 100px;
+}
+.align-keycaps {
+  padding-top: 35px;
+}
+.logitech {
+  padding-top: 60px;
+}
+.align-logitech {
+  padding-top: 40px;
+}
+.canon {
+  padding-top: 80px;
+}
+.align-canon {
+  padding-top: 40px;
+}
+.shw1 {
+  padding-top: 40px;
+}
+.align-shw1 {
+  padding-top: 22px;
+}
+.shw2 {
+  padding-top: 60px;
+}
+.align-shw2 {
+  padding-top: 45px;
+}
+.logitech2 {
+  padding-top: 40px;
+}
+.align-logitech2 {
+  padding-top: 30px;
 }
