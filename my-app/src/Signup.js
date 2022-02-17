@@ -27,8 +27,8 @@ const Signup = () => {
                         </Form.Group>
                         <br/>
                         <Form.Group>
-                            <Form.Label id="invalidInput">Password</Form.Label>
-                            <div id="passDiv" className="invalidInput">
+                            <Form.Label>Password</Form.Label>
+                            <div id="passDiv" className="">
                                 <Form.Control type="password" id="pass" required />
                             </div>
                             
