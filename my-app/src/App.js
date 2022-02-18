@@ -8,7 +8,7 @@ import Navbar from './Navbar'
 import Home from './Home'
 import Checkout from './Checkout'
 import AddProduct from './AddProduct'
-import Product from './Product'
+// import Product from './Product'
 import * as Bootstrap from 'react-bootstrap'
 
 function App() {

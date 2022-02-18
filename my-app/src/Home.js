@@ -1,5 +1,4 @@
-import showCategory from "./server/browse.js"
-import buildProducts from "./Browse.js"
+import {buildProducts, showCategory} from "./server/product.js"
 import './Home.css';
 
 const categories = ["all", "monitor", "audio", "peripherals", "desks", "accesories"];
@@ -24,8 +23,10 @@ const Home = () => {
               </select> 
             <button onClick={()=>showCategory(products)}> Search </button> 
             </div>
-            <div className="grid-container" id="product-display">
-            </div>         
+            <div className="grid-container" id="products-display">  
+            </div>  
+            <div id="product-display">
+            </div>       
         </div>
     );
 }
