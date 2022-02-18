@@ -39,3 +39,18 @@ export async function userType(){
         return null;
     }
 }
+
+export async function getEmail(username){
+    var email;
+    const collectionRef = ref(db,"Admins/"); 
+    const collectionsnap = await get((collectionRef));
+        collectionsnap.forEach(doc=>{
+            var user = doc.val().Username;
+            var em = doc.val().Email;
+            if(username==user){
+                email = em;
+            }
+            
+        });
+    return email; 
+}

@@ -47,7 +47,7 @@ function showCategory(){
 } 
 
 async function addToCart(){
-    var usertype = userType();
+    var usertype = await userType();
     if (usertype!=null){
         var uid = auth.currentUser.uid;
         var collection;
@@ -75,6 +75,7 @@ async function addToCart(){
                     var spot=i;
                     var newquantity=parseInt(items[i].quantity)+parseInt(quantity);
                     updateQuantity(spot, newquantity);
+                    alert("Product added");
                     return;
                 }
             }
