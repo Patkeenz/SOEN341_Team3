@@ -2,7 +2,6 @@ import './index.css';
 import {initializeApp} from "firebase/app";
 
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyBv1D7LixTCVGpOjHX_nnDMh_El-uNp1P8",
   authDomain: "soen-341-59faa.firebaseapp.com",
