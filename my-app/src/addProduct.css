@@ -82,3 +82,8 @@ html
     margin: 5px;
     width: 70%;
 }
+
+.invalidInput 
+{
+    border:1px solid red;
+}
