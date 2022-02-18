@@ -1,11 +1,14 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import app from '../server/index.js';
 import React from 'react'
+import {getEmail} from "../server/auth.js";
 
 const auth = getAuth();
 
-function login(email, password) {
+export async function login(user, password) {
+    alert(user);
+    var email = await getEmail(user);
     return signInWithEmailAndPassword(auth, email, password);
 }
 
-export default login;
+

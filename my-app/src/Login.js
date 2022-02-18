@@ -1,12 +1,15 @@
 import {Form, Button, Card, Container, Alert} from 'react-bootstrap';
 import { Link, useHistory, Redirect } from 'react-router-dom';
-import login from './server/login.js'
-import { React, useState, useRef } from 'react'
+import {login} from './server/login.js'
+import { React, useState, useRef, useContext } from 'react'
 import './addProduct.css';
-
+import { UserContext } from './App'
 
 const Login = () => {
-    const emailRef = useRef();
+
+    const {state, dispatch} = useContext(UserContext);
+
+    const userRef = useRef();
     const passwordRef = useRef();
     const [error, setError] = useState("");
     const history = useHistory();
@@ -14,11 +17,12 @@ const Login = () => {
     async function handleSubmit() {
         try{
             setError("");
-            await login(emailRef.current.value, passwordRef.current.value);
-            history.replace("/");
+            await login(userRef.current.value, passwordRef.current.value);
+            dispatch({type:"USER", payload:true})
+            history.push("/");
         }
         catch{
-            setError("Incorrect email or password")
+            setError("Incorrect User or password")
         }
     }
     return (
@@ -29,8 +33,8 @@ const Login = () => {
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form>
                         <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="text" ref={emailRef} required />
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="text" ref={userRef} required />
                         </Form.Group>
                         <br/>
                         <Form.Group id="password">

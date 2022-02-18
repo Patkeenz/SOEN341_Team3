@@ -1,4 +1,4 @@
-import checkForValidPassword from './server/signup.js';
+import {checkForValidPassword, buildAdmin} from './server/signup.js';
 import {Form, Card, Container} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './addProduct.css';
@@ -10,7 +10,7 @@ const Signup = () => {
             <Card className="w-100" border="danger" style={{ maxWidth: "400px"}}>
                 <Card.Body>
                     <h2 className="text-center mb-4">Sign up</h2>
-                    <Form>
+                    <Form id="signup-form">
                         <Form.Group>
                             <Form.Label>Email</Form.Label>
                             <div id='emailDiv' className="">
@@ -39,6 +39,11 @@ const Signup = () => {
                             <div id="passVerifDiv" className="">
                                 <Form.Control type="password" id="validatedPass" required />
                             </div>
+                        </Form.Group>
+                        <br/>
+                        <Form.Group id="admin-button">
+                            <button type="button" className="button5"
+                            onClick={() =>buildAdmin()}>Admin? Tap here.</button>
                         </Form.Group>
                         <br/>
                         <div className="redGlowBg">

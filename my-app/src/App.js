@@ -12,8 +12,13 @@ import AddProduct from './AddProduct'
 import * as Bootstrap from 'react-bootstrap'
 import { getAuth } from 'firebase/auth'
 import { handleLogout, logout } from './server/logout'
+import { createContext, useReducer } from 'react';
+import {initialState, reducer} from './reducer/useReducer';
 
+export const UserContext = createContext();
 function App() {
+  
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   // const auth = getAuth();
   // const currentUser = auth.currentUser
@@ -35,6 +40,8 @@ function App() {
 // }
 
   return (
+    <>
+    <UserContext.Provider value={{state, dispatch}}>
     <Router>
       <header className="App-header">
       <Navbar />
@@ -62,6 +69,8 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </UserContext.Provider>
+    </>
   );
 }
 
