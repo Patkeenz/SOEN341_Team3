@@ -5,8 +5,8 @@ import { UserContext } from '../App'
 
 const auth = getAuth();
 
-export function logout() {
-    return auth.signOut();
+export async function logout() {
+    await auth.signOut();
 }
 
 

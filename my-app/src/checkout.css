@@ -19,3 +19,9 @@
   background-color: red;
   color: white;
 }
+
+.updateButton
+{
+  background-color: rgb(0, 112, 6);
+  color: white;
+}

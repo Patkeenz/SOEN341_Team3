@@ -47,7 +47,7 @@ function showCategory(){
 } 
 
 async function addToCart(){
-    var usertype = await userType();
+    var usertype = await userType()
     if (usertype!=null){
         var uid = auth.currentUser.uid;
         var collection;
@@ -63,12 +63,13 @@ async function addToCart(){
         })
         var quantity = document.getElementById("categoryquantity").value
         var addon = quantity+"|"+selectedproduct.name+"|"+selectedproduct.price+"|"+selectedproduct.link;
-        if (cart==null){
+        if (cart==null || cart==""){
             update(ref(db, collection + uid),{
                 Cart: addon
             })
         }
         else{
+            alert(cart.toString());
             var items = await getItems();
             for (var i=0; i<items.length;i++){ //if the product is already in the cart update quantity
                 if (selectedproduct.name == items[i].name){

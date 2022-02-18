@@ -6,7 +6,6 @@ import {getEmail} from "../server/auth.js";
 const auth = getAuth();
 
 export async function login(user, password) {
-    alert(user);
     var email = await getEmail(user);
     return signInWithEmailAndPassword(auth, email, password);
 }

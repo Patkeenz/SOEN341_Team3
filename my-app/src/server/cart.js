@@ -82,6 +82,9 @@ export async function updateQuantity(spot, newquantity){
 }
 
 export async function removeItem(spot){
+    if(spot==null){
+        return;
+    }
     var cart = await getCart();
     var allitems = cart.split(", ");
     var updatedcart="";
@@ -98,4 +101,7 @@ export async function removeItem(spot){
             }
         }
     }
+        update(ref(db, collection + uid),{
+            Cart: updatedcart
+        })
 }

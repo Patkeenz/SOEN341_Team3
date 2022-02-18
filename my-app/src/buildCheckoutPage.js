@@ -1,4 +1,4 @@
-import {getItems, removeItem} from "./server/cart.js"
+import {getItems, removeItem, updateQuantity} from "./server/cart.js"
 
 
 export async function buildCheckoutProducts(loaded) {
@@ -10,10 +10,10 @@ export async function buildCheckoutProducts(loaded) {
     }
     let maindiv = document.getElementById("checkoutItems");
     maindiv.innerHTML = "";
-    if(products != null)
     {
         for(var i=0; i<products.length; i++)
         {
+            if(products[i].name!=null){
             var product = products[i];
             let row = document.createElement("tr");
             let imgCol = document.createElement("th");
@@ -26,8 +26,13 @@ export async function buildCheckoutProducts(loaded) {
             prodName.innerHTML = product.name;
             prodName.className = "slightlyMarginedItem";
             let lineBreak = document.createElement("br");
-            let prodDescription = document.createElement("p");
-            // prodDescription.innerHTML = product.description;
+            let textbox = document.createElement("input");
+            textbox.setAttribute("type", "text");
+            textbox.setAttribute("placeholder", product.quantity);
+            textbox.setAttribute("id", "product-quantity");
+            textbox.className="textbox2";
+            let prodQuant = document.createElement("p");
+            prodQuant.innerHTML = product.quantity;
             let priceCol = document.createElement("th");
             let prodPrice = document.createElement("h1");
             prodPrice.innerHTML = product.price + "$";
@@ -36,9 +41,18 @@ export async function buildCheckoutProducts(loaded) {
             deleteButton.className = "deleteButton";
             deleteButton.innerHTML = "Delete";
             deleteButton.setAttribute("id", product.spot);
-            deleteButton.onclick = function(){removeItem(this.id);
-                buildCheckoutProducts(false);};
-
+            deleteButton.onclick = async function(){
+                await removeItem(this.id);
+                buildCheckoutProducts(false);
+            }
+            let updateButton = document.createElement("button");
+            updateButton.className = "updateButton";
+            updateButton.innerHTML = "Update";
+            updateButton.setAttribute("id", product.spot);
+            updateButton.onclick = async function(){
+                await updateQuantity(this.id, document.getElementById("product-quantity").value);
+                buildCheckoutProducts(false);
+            }
             maindiv.appendChild(row);
             row.appendChild(imgCol);
             row.append(infoCol);
@@ -50,17 +64,9 @@ export async function buildCheckoutProducts(loaded) {
             priceCol.append(prodPrice);
             row.append(editCol);
             editCol.append(deleteButton);
-            
-            /*
-            let p1 = document.createElement("p");
-            
-            let p2 = document.createElement("p");
-            p2.innerHTML = product.price+ "$";
-            div.appendChild(pic);
-            div.appendChild(p1);
-            div.appendChild(p2);
-            maindiv.appendChild(div);
-            */
+            editCol.append(textbox);
+            editCol.append(updateButton);
+        }
         }
     }
     return products
