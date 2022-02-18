@@ -23,7 +23,7 @@ async function handleUpload(image){
       var progress = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
       if(progress==100){
         getDownloadURL(uploadtask.snapshot.ref).then((url)=>{
-          alert(url);
+          //alert(url);
           urlget=url;
           uploadProduct(
             document.getElementById("name").value,
