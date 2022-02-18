@@ -1,11 +1,14 @@
 import {Form, Button, Card, Container, Alert} from 'react-bootstrap';
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import login from './server/login.js'
-import { React, useState, useRef } from 'react'
+import { React, useState, useRef, useContext } from 'react'
 import './addProduct.css';
-
+import { UserContext } from './App'
 
 const Login = () => {
+
+    const {state, dispatch} = useContext(UserContext);
+
     const emailRef = useRef();
     const passwordRef = useRef();
     const [error, setError] = useState("");
@@ -15,7 +18,8 @@ const Login = () => {
         try{
             setError("");
             await login(emailRef.current.value, passwordRef.current.value);
-            history.replace("/");
+            dispatch({type:"USER", payload:true})
+            history.push("/");
         }
         catch{
             setError("Incorrect email or password")
