@@ -1,39 +1,61 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import * as Bootstrap from 'react-bootstrap'
+import logo from './images/company name.png';
+import blackandred_cart from './images/blackandred_cart.png'
+import { getAuth } from 'firebase/auth'
+import { handleLogout, logout } from './server/logout'
 
 const Navbar = () => {
+
+  const auth = getAuth();
+  const currentUser = auth.currentUser
+  let msg = "";
+  if (currentUser !== null){
+    msg = "Welcome back, " + currentUser.email;
+  }
+  const history = useHistory();
+  //history.push("/");
     return (
-        <nav className="navbar">
-            <h1>Ecommerce Website</h1>
-            <div className="links">
-            <Link to="/home">
-            <Button variant="outline-dark">
-              Home 
-            </Button>
-            </Link>
-            <Link to="/login">
-            <Button variant="outline-dark">
-              Login 
-            </Button>
-          </Link>
-          <Link to="/signup">
-            <Button variant="outline-dark">
-              Sign up 
-            </Button>
-          </Link>
-          <Link to="/checkout">
-            <Button variant="outline-dark">
-              Checkout
-            </Button>
-          </Link>
-          <Link to="/addproduct">
-            <button>
-              Add Product
-            </button>
-          </Link>
-            </div>
-        </nav>
+      <Bootstrap.Navbar className="container-fluid" bg="light" variant="light" expand="lg">
+      <Bootstrap.Container>
+        <Bootstrap.Navbar.Brand as ={Link} to="/">
+          <img
+          src={logo}
+          width="157"
+          height="45"
+          className="highlight"
+          alt="logo"
+          />
+        </Bootstrap.Navbar.Brand> {currentUser && msg}
+        {/* <Bootstrap.Navbar.Brand href="#home">React-Bootstrap</Bootstrap.Navbar.Brand> */}
+        <Bootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Bootstrap.Navbar.Collapse id="basic-navbar-nav">
+          <Bootstrap.Nav className="ms-auto">
+            {!currentUser && <Bootstrap.Nav.Link as={Link} to="/login">Login</Bootstrap.Nav.Link>}
+            {!currentUser && <Bootstrap.Nav.Link as={Link} to="/signup">Sign up</Bootstrap.Nav.Link>}
+            <Bootstrap.Nav.Link as={Link} to="/addproduct">Add product</Bootstrap.Nav.Link>
+            <Bootstrap.Navbar.Brand as={Link} to="/checkout">
+          <img
+          src={blackandred_cart}
+          width="40"
+          height="40"
+          className="highlight"
+          alt="logo"
+          />
+            </Bootstrap.Navbar.Brand>
+            {currentUser && <Bootstrap.NavDropdown title="Account" id="basic-nav-dropdown">
+              <Bootstrap.NavDropdown.Item href="#action/3.1">My Profile</Bootstrap.NavDropdown.Item>
+              <Bootstrap.NavDropdown.Item href="#action/3.2">Orders</Bootstrap.NavDropdown.Item>
+              <Bootstrap.NavDropdown.Item href="#action/3.3">Privacy/Settings</Bootstrap.NavDropdown.Item>
+              <Bootstrap.NavDropdown.Divider />
+              <Bootstrap.NavDropdown.Item onClick={handleLogout} href="/">Logout</Bootstrap.NavDropdown.Item>
+            </Bootstrap.NavDropdown>}
+          </Bootstrap.Nav>
+        </Bootstrap.Navbar.Collapse>
+      </Bootstrap.Container>
+    </Bootstrap.Navbar>
     )
 }
 
