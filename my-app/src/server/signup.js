@@ -6,6 +6,9 @@ import app from '../server/index.js';
 const auth = getAuth();
 const db = getDatabase(app);
 
+const admincode = "123456";
+var wantsadmin;
+
 async function addUser(usertype){
 
     var collection;
@@ -46,7 +49,7 @@ async function addUser(usertype){
     })
 }
 
-function checkForValidPassword(userType)
+export function checkForValidPassword(userType)
 {
     const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     const digits = /[1234567890]/;
@@ -110,8 +113,51 @@ function checkForValidPassword(userType)
 
     // make sure pass1=pass2
 
-    if(passwordValid)
-        addUser(userType);
+    if(passwordValid&&!wantsadmin){
+        addUser("user");
+    }
+    else if(passwordValid&&wantsadmin){
+        var code = document.getElementById('admin-code').value;
+        if(code==admincode){
+            addUser("admin");
+        }
+        else{
+            alert("Code Invalid!")
+        }
+    }
 }
 
-export default checkForValidPassword;
+
+export function buildAdmin(){
+    wantsadmin=true;
+    let div = document.getElementById("admin-button");
+    div.innerHTML = "";
+    let textbox = document.createElement("input");
+    textbox.setAttribute("type", "text");
+    textbox.setAttribute("placeholder", "         Enter The 6-Digit Code Supplied To You");
+    textbox.setAttribute("required", "");
+    textbox.setAttribute("id", "admin-code");
+    textbox.className="textbox2";
+    let xbutton = document.createElement("button")
+    xbutton.className = "button5";
+    xbutton.innerHTML = "X";
+    xbutton.onclick=function() {
+        wantsadmin=false;
+        let div = document.getElementById("admin-button");
+        div.innerHTML = "";
+        let adminbutton = document.createElement("button")
+        adminbutton.className = "button5";
+        adminbutton.innerHTML="Admin? Tap here."
+        adminbutton.onclick=function(){
+            buildAdmin();
+        }
+        div.appendChild(adminbutton);
+    }
+    div.appendChild(textbox);
+    div.appendChild(xbutton);
+
+
+    // <button type="button" className="button5"
+    //                         onClick={() =>buildAdmin()}>Admin? Tap here.</button>
+}
+

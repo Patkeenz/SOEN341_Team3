@@ -1,6 +1,6 @@
 import {Form, Button, Card, Container, Alert} from 'react-bootstrap';
 import { Link, useHistory, Redirect } from 'react-router-dom';
-import login from './server/login.js'
+import {login} from './server/login.js'
 import { React, useState, useRef, useContext } from 'react'
 import './addProduct.css';
 import { UserContext } from './App'

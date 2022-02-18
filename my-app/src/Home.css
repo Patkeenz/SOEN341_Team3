@@ -17,6 +17,63 @@
   text-align: center;
 }
 
+.grid-item:hover{
+  transform: scale(1.05);
+  transition: transform .5s ease;
+}
+
 .buttondrop {
  text-align: center;
+}
+
+.button3
+{
+    position:relative;
+    top: 0; 
+    bottom: 10; 
+    left: 0; 
+    right: 0;
+    margin: auto;
+    height: 30px;
+    width: 100px;
+    background-color: #232B22;
+    color: #ffffff;
+    border: 2px solid #ffff;
+    border-radius: 2px;
+}
+
+.button2
+{
+    position:relative;
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    margin: auto;
+    height: 30px;
+    width: 100px;
+    background-color: #232B22;
+    color: #ffffff;
+    border: 2px solid #ffff;
+    border-radius: 2px;
+}
+
+.button2:hover{
+    background: #e44242;
+}
+
+.button4
+{
+    position:relative;
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    margin: auto;
+    height: 30px;
+    width: 100px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid rgb(3, 3, 3);
+    border-radius: 2px;
 }

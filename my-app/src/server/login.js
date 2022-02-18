@@ -4,8 +4,7 @@ import React from 'react'
 
 const auth = getAuth();
 
-function login(email, password) {
+export function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
 }
 
-export default login;

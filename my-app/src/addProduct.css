@@ -23,6 +23,29 @@ html
     opacity: 0.6;
 }
 
+.button5
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position:relative;
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    margin: auto;
+    height: 30px;
+    width: 150px;
+    background-color: #232B22;
+    color: #ffffff;
+    border: 2px solid #ffff;
+    border-radius: 2px;
+}
+
+.button5:hover{
+    background: #e44242;
+}
+
 .redGlowBg
 {
     position:relative;
@@ -46,6 +69,7 @@ html
     width: 70%;
 }
 
+
 .inputSpace 
 {
     margin: 15px;
@@ -56,6 +80,20 @@ html
     display: block;
     position: absolute;
     text-align: left;
+    margin-left: 15%;
+    font-weight: 600;
+}
+
+.textbox2
+{
+    width:100%;
+}
+
+.textbox2Label
+{
+    display: block;
+    position: absolute;
+    text-align: center;
     margin-left: 15%;
     font-weight: 600;
 }
