@@ -83,8 +83,6 @@ export async function updateQuantity(spot, newquantity){
 
 export async function removeItem(spot){
     var cart = await getCart();
-    var size = await getItems().length;
-    
     var allitems = cart.split(", ");
     var updatedcart="";
     for(var i=0; i<allitems.length; i++){
@@ -92,19 +90,12 @@ export async function removeItem(spot){
             if(i==0){
                 updatedcart+=allitems[i];
             }
+            else if (spot==0 && i==1){
+                updatedcart+=allitems[i];
+            }
             else{
                 updatedcart+=", "+allitems[i];
             }
         }
     }
-    if (size!=1){
-    update(ref(db, collection + uid),{
-        Cart: updatedcart
-    })
-}
-else{
-    update(ref(db, collection + uid),{
-        Cart: null
-    })
-}
 }
