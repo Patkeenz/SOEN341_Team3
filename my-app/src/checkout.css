@@ -8,3 +8,14 @@
 {
     margin: 10px;
 }
+
+.productImage 
+{
+  width: 150px;
+}
+
+.deleteButton
+{
+  background-color: red;
+  color: white;
+}
