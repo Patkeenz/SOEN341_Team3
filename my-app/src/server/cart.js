@@ -1,5 +1,5 @@
 import app from '../server/index.js';
-import {getDatabase, get, update, ref} from 'firebase/database';
+import {getDatabase, get, update, ref, deleteField} from 'firebase/database';
 import {getAuth} from 'firebase/auth';
 import {userType} from '../server/auth.js'
 
@@ -83,6 +83,8 @@ export async function updateQuantity(spot, newquantity){
 
 export async function removeItem(spot){
     var cart = await getCart();
+    var size = await getItems().length;
+    
     var allitems = cart.split(", ");
     var updatedcart="";
     for(var i=0; i<allitems.length; i++){
@@ -95,7 +97,14 @@ export async function removeItem(spot){
             }
         }
     }
+    if (size!=1){
     update(ref(db, collection + uid),{
         Cart: updatedcart
     })
+}
+else{
+    update(ref(db, collection + uid),{
+        Cart: null
+    })
+}
 }
