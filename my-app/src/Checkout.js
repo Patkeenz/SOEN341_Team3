@@ -1,5 +1,5 @@
 import {Card, Container, Row, Col, Button} from 'react-bootstrap';
-import applePic from './images/audio_apple.png';
+import applePic from './images/blackandwhite_cart.png';
 import './checkout.css';
 
 import './addProduct.css';
