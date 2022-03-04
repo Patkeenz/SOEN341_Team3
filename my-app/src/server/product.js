@@ -69,7 +69,6 @@ async function addToCart(){
             })
         }
         else{
-            alert(cart.toString());
             var items = await getItems();
             for (var i=0; i<items.length;i++){ //if the product is already in the cart update quantity
                 if (selectedproduct.name == items[i].name){

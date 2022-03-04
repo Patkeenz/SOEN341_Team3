@@ -4,6 +4,15 @@
     margin-top: 50px;
   }
 
+.right{
+  text-align: right;
+}
+
+.nolink a{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
 .slightlyMarginedItem
 {
     margin: 10px;
@@ -16,12 +25,14 @@
 
 .deleteButton
 {
-  background-color: red;
+  width: 140px;
+  background-color: #e44242;
   color: white;
 }
 
 .updateButton
 {
+  width: 70px;
   background-color: rgb(0, 112, 6);
   color: white;
 }

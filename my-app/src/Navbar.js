@@ -37,7 +37,7 @@ const Navbar = () => {
         <Bootstrap.Navbar.Collapse id="basic-navbar-nav">
           <Bootstrap.Nav className="ms-auto">
             <Bootstrap.Nav.Link as={Link} to="/addproduct">Add product</Bootstrap.Nav.Link>
-            <Bootstrap.Navbar.Brand as={Link} to="/checkout">
+            <Bootstrap.Navbar.Brand as={Link} to="/cart">
           <img
           src={blackandred_cart}
           width="40"
@@ -79,7 +79,7 @@ const Navbar = () => {
             <Bootstrap.Nav.Link as={Link} to="/login">Login</Bootstrap.Nav.Link>
             <Bootstrap.Nav.Link as={Link} to="/signup">Sign up</Bootstrap.Nav.Link>
             <Bootstrap.Nav.Link as={Link} to="/addproduct">Add product</Bootstrap.Nav.Link>
-            <Bootstrap.Navbar.Brand as={Link} to="/checkout">
+            <Bootstrap.Navbar.Brand as={Link} to="/cart">
           <img
           src={blackandred_cart}
           width="40"

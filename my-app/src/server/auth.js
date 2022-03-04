@@ -6,7 +6,7 @@ const auth = getAuth();
 const db = getDatabase(app);
 
 export function loggedin(){
-    if(auth.currentUser==null) {
+    if(auth.currentUser.uid==null) {
         //alert("not logged in");
     return false;
     }

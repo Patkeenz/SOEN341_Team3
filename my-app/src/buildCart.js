@@ -1,16 +1,19 @@
+import { buildCheckout } from "./buildCheckout.js";
 import {getItems, removeItem, updateQuantity} from "./server/cart.js"
 
 
-export async function buildCheckoutProducts(loaded) {
+export async function buildCartProducts(loaded) {
     if(!loaded){
         var products = await getItems();
     }
     else{
         products = loaded;
     }
-    let maindiv = document.getElementById("checkoutItems");
-    maindiv.innerHTML = "";
-    {
+    let maindiv = document.getElementById("usercart");
+    maindiv.innerHTML="";
+    maindiv.className="nolink";
+    let table = document.createElement("table")
+    var subtotal = 0;
         for(var i=0; i<products.length; i++)
         {
             if(products[i].name!=null){
@@ -35,7 +38,8 @@ export async function buildCheckoutProducts(loaded) {
             prodQuant.innerHTML = product.quantity;
             let priceCol = document.createElement("th");
             let prodPrice = document.createElement("h1");
-            prodPrice.innerHTML = product.price + "$";
+            prodPrice.innerHTML = product.price*product.quantity + "$";
+            subtotal += parseFloat(product.price*product.quantity);
             let editCol = document.createElement("th");
             let deleteButton = document.createElement("button");
             deleteButton.className = "deleteButton";
@@ -43,7 +47,7 @@ export async function buildCheckoutProducts(loaded) {
             deleteButton.setAttribute("id", product.spot);
             deleteButton.onclick = async function(){
                 await removeItem(this.id);
-                buildCheckoutProducts(false);
+                buildCartProducts(false);
             }
             let updateButton = document.createElement("button");
             updateButton.className = "updateButton";
@@ -51,9 +55,9 @@ export async function buildCheckoutProducts(loaded) {
             updateButton.setAttribute("id", product.spot);
             updateButton.onclick = async function(){
                 await updateQuantity(this.id, document.getElementById("product-quantity").value);
-                buildCheckoutProducts(false);
+                buildCartProducts(false);
             }
-            maindiv.appendChild(row);
+            table.appendChild(row);
             row.appendChild(imgCol);
             row.append(infoCol);
             imgCol.appendChild(pic);
@@ -63,11 +67,25 @@ export async function buildCheckoutProducts(loaded) {
             row.append(priceCol);
             priceCol.append(prodPrice);
             row.append(editCol);
-            editCol.append(deleteButton);
-            editCol.append(textbox);
             editCol.append(updateButton);
+            editCol.append(textbox);
+            editCol.append(deleteButton);
         }
         }
-    }
+        let subtotalheader = document.createElement("h3");
+        subtotalheader.setAttribute("id", "subtotal");
+        subtotalheader.className = "right";
+        subtotalheader.innerHTML = "";
+        subtotalheader.innerHTML = "Subtotal: " + subtotal;
+        let checkoutButton = document.createElement("button");
+        checkoutButton.innerHTML = "Checkout";
+        checkoutButton.className= "button5";
+        checkoutButton.onclick = async function(){
+            buildCheckout(false);
+        }
+        maindiv.append(table);
+        maindiv.append(subtotalheader);
+        maindiv.append(checkoutButton)
+
     return products
   }

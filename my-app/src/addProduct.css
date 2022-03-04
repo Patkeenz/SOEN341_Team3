@@ -42,6 +42,29 @@ html
     border-radius: 2px;
 }
 
+.button6
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position:relative;
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    margin: auto;
+    height: 30px;
+    width: 250px;
+    background-color: #232B22;
+    color: #ffffff;
+    border: 2px solid #ffff;
+    border-radius: 2px;
+}
+
+.button6:hover{
+    background: #e44242;
+}
+
 .button5:hover{
     background: #e44242;
 }
@@ -86,7 +109,7 @@ html
 
 .textbox2
 {
-    width:100%;
+    width:70px;
 }
 
 .textbox2Label
