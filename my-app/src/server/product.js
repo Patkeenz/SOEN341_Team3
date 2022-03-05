@@ -4,6 +4,8 @@ import {getAuth} from 'firebase/auth';
 import {userType} from "./auth.js";
 import {getItems, updateQuantity, removeItem} from "./cart.js";
 import '../Home.css';
+import { FaArrowLeft, FaCartPlus } from 'react-icons/fa'
+import ReactDOM, { render } from 'react-dom';
 
 const db = getDatabase(app);
 const auth = getAuth();
@@ -96,21 +98,27 @@ function buildButtonDrop(list,buttonfunc, buttontext){
     buttondropdiv.className = "buttondrop"
     let select = document.createElement("select");
     select.setAttribute("id", "categoryquantity");
-    select.className="button3";
+    select.className="dropdown-toggle w-1/12 mr-2 mt-5 inline-block px-2 py-1.5 text-black font-medium text-sm uppercase rounded hover:cursor-pointer transition duration-150 ease-in-out";
     for (var i=0; i<list.length; i++){
         let option = document.createElement("option");
         option.value = list[i]
         option.innerHTML = list[i];
         select.appendChild(option);
     }
+    let container = document.createElement("div");
+    container.className="btn btn-primary justify-self-center btn-sm mb-1"
     let button = document.createElement("button");
-    button.className="button2";
+    //button.className="button2";
     button.innerHTML=buttontext;
     button.onclick=function() {
         buttonfunc();
     }
+
+    container.appendChild(select)
+    ReactDOM.render(<FaCartPlus className='float-left mr-2 mt-1'/>, container)
+    container.appendChild(button)
     buttondropdiv.appendChild(select);
-    buttondropdiv.appendChild(button);
+    buttondropdiv.appendChild(container);
     return buttondropdiv;
 }
 
@@ -164,9 +172,14 @@ export async function buildProducts(loaded) {
  async function buildProduct(currentproduct){
     selectedproduct = currentproduct;
     let maindiv = document.getElementById("main");
+    maindiv.className="absolute"
     maindiv.innerHTML=""; 
     let solodiv = document.createElement("div");
     solodiv.className=("product-display");
+    let buttonContainer = document.createElement("div")
+    let div2 = document.createElement("div")
+    div2.className="grid my-2"
+    buttonContainer.className="btn btn-primary justify-self-center btn-sm"
     let button = document.createElement("button");
     button.innerHTML= "Go back";
     button.onclick= function(){
@@ -174,11 +187,12 @@ export async function buildProducts(loaded) {
     }
     button.style.display = "block";
     button.style.margin = "0 auto";
-    button.className = "button2";
+    //button.className = "button2";
     let pic = document.createElement("img");
     pic.setAttribute("src", currentproduct.link); //set the img source to the current products source
-    pic.style.display = "block";
-    pic.style.margin = "0 auto";
+    pic.className="p-1 bg-white border rounded max-w-sm justify-self-center bg-opacity-25"
+    // pic.style.display = "block";
+    // pic.style.margin = "0 auto";
     let header = document.createElement("h1");
     header.style.color="white";
     header.style.textAlign="center";
@@ -193,10 +207,21 @@ export async function buildProducts(loaded) {
     p.style.textAlign="center"
     p.style.marginLeft="500px"
     p.style.marginRight="500px"
+
+    let cartAdd = document.createElement("div")
+    cartAdd.className="btn btn-primary justify-self-center btn-sm"
+    let buttonDrop = buildButtonDrop(numbers, addToCart, "Add to Cart") //buttonfunc should be addToCart
+   
     
-    solodiv.appendChild(button);
-    solodiv.appendChild(pic);
-    solodiv.appendChild(buildButtonDrop(numbers, addToCart, "Add to Cart")); //buttonfunc should be addToCart
+    ReactDOM.render(<FaArrowLeft className='float-left mr-2 mt-0.5 '/>, buttonContainer)
+    buttonContainer.appendChild(button)
+    div2.appendChild(buttonContainer)
+    solodiv.appendChild(div2);
+    let picContainer = document.createElement("div")
+    picContainer.className="grid"
+    picContainer.appendChild(pic)
+    solodiv.appendChild(picContainer);
+    solodiv.appendChild(buttonDrop);
     solodiv.appendChild(header);
     solodiv.appendChild(p2);
     solodiv.appendChild(p);
