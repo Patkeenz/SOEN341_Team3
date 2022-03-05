@@ -2,58 +2,62 @@ import {checkForValidPassword, buildAdmin} from './server/signup.js';
 import {Form, Card, Container} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './addProduct.css';
+import { FaUser } from 'react-icons/fa'
 
 const Signup = () => {
     return (
         <>
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh"}}>
-            <Card className="w-100" border="danger" style={{ maxWidth: "400px"}}>
+            <Card className="w-100 border-3 border-red-400" border="danger" style={{ maxWidth: "400px"}}>
                 <Card.Body>
                     <h2 className="text-center mb-4">Sign up</h2>
                     <Form id="signup-form">
                         <Form.Group>
-                            <Form.Label>Email</Form.Label>
+                            
                             <div id='emailDiv' className="">
-                                <Form.Control type="email" id="email" required />
+                                <Form.Control type="email" id="email" className='placeholder-grey-400' placeholder='Email' required />
                             </div>
                         </Form.Group>
                         <br/>
                         <Form.Group>
-                            <Form.Label>Username</Form.Label>
                             <div id='userDiv' className="">
-                                <Form.Control type="text" id="user" required />
+                                <Form.Control type="text" id="user" className='placeholder-grey-400' placeholder='Username' required />
                             </div>
                             
                         </Form.Group>
                         <br/>
                         <Form.Group>
-                            <Form.Label>Password</Form.Label>
+                            
                             <div id="passDiv" className="">
-                                <Form.Control type="password" id="pass" required />
+                                <Form.Control type="password" id="pass" className='placeholder-grey-400' placeholder='Password' required />
                             </div>
                             
                         </Form.Group>
                         <br/>
                         <Form.Group id="confirm-password">
-                            <Form.Label>Confirm Password</Form.Label>
+                            
                             <div id="passVerifDiv" className="">
-                                <Form.Control type="password" id="validatedPass" required />
+                                <Form.Control type="password" id="validatedPass" className='placeholder-grey-400' placeholder='Confirm Password' required />
                             </div>
                         </Form.Group>
                         <br/>
-                        <Form.Group id="admin-button">
-                            <button type="button" className="button5"
-                            onClick={() =>buildAdmin()}>Admin? Tap here.</button>
+                        <Form.Group id="admin-button" className='grid'>
+                            {/**button5 */}
+                            <div className='btn btn-primary justify-self-center btn-sm'>
+                                <FaUser className='float-left mr-2 mt-0.5 '/> 
+                                <button type="button" className="uppercase" 
+                                onClick={() =>buildAdmin()}> Admin</button>
+                            </div>
                         </Form.Group>
                         <br/>
-                        <div className="redGlowBg">
-                            <button type="button" className="button"
+                        <div className="relative py-3 grid">
+                            <button type="button" className="inline-block justify-self-center px-3 py-2.5 bg-red-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-red-700"
                             onClick={() =>(checkForValidPassword('admin'))}>Sign up</button>
                         </div>
                     </Form>
                 </Card.Body>
                 <div className="w-100 text-center mb-2">
-                Already have an account? <Link to="/login"><a>Login</a></Link>
+                Already have an account? <Link to="/login"><button className="inline-block mr-3 px-2 py-1.5 bg-red-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-red-700">Login</button></Link>
             </div>
             </Card>
         </Container>
