@@ -10,7 +10,7 @@ const Cart = () => {
     window.onload=(buildCartProducts(false));
 
     return (
-        <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "50vh"}}>
+        <Container className="d-flex absolute align-items-center justify-content-center" style={{ minHeight: "50vh"}}>
             <Card className=" d-flex w-100" border="danger" style= {{ maxWidth: "1000px"}}>
                 <Card.Body>
                     <h2 className="text-center mb-4" id="cart-title">Here are your products Below:</h2>

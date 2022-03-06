@@ -28,29 +28,28 @@ const Login = () => {
         }
     }
     return (
-        <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh"}}>
-            <Card className=" d-flex w-100" border="danger" style= {{ maxWidth: "400px"}}>
+        <Container className="d-flex align-items-center justify-content-center " style={{ minHeight: "100vh"}}>
+            <Card className=" d-flex w-100 border-3 border-red-400" border="danger" style= {{ maxWidth: "400px"}}>
                 <Card.Body>
                     <h2 className="text-center mb-4">Log In</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form>
                         <Form.Group id="email">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" ref={userRef} required />
+                            {/** <Form.Label>Username</Form.Label>*/}
+                            <Form.Control type="text" className='placeholder-grey-400' placeholder='Username' ref={userRef} required />
                         </Form.Group>
                         <br/>
                         <Form.Group id="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" ref={passwordRef} required />
+                            <Form.Control type="password" className='placeholder-grey-400' placeholder='Password' ref={passwordRef} required />
                         </Form.Group>
                         <br/>
-                        <div className="redGlowBg">
-                            <button type="button" className="button" onClick={handleSubmit} href="/">Log In</button>
+                        <div className="relative py-3 grid">
+                            <button type="button" className="inline-block justify-self-center px-3 py-2.5 bg-red-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-red-700" onClick={handleSubmit}>Log In</button>
                         </div>
                     </Form>
                 </Card.Body>
                 <div className="w-100 text-center mb-2">
-                New to TechTonic? <Link to="/signup"><a>Sign up</a></Link>
+                New to TechTonic? <Link to="/signup"><button className="inline-block mr-3 px-2 py-1.5 bg-red-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-red-700">Sign up</button></Link>
             </div>
             </Card>
         </Container>
