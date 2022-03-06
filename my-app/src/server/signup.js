@@ -1,6 +1,8 @@
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import {getDatabase, set, ref} from 'firebase/database';
 import app from '../server/index.js';
+import { FaUser } from 'react-icons/fa'
+import ReactDOM, { render } from 'react-dom';
 
 
 const auth = getAuth();
@@ -131,27 +133,33 @@ export function checkForValidPassword(userType)
 export function buildAdmin(){
     wantsadmin=true;
     let div = document.getElementById("admin-button");
+    div.className="grid"
     div.innerHTML = "";
     let textbox = document.createElement("input");
     textbox.setAttribute("type", "text");
-    textbox.setAttribute("placeholder", "         Enter The 6-Digit Code Supplied To You");
+    textbox.setAttribute("placeholder", "Enter The 6-Digit Code Supplied To You");
     textbox.setAttribute("required", "");
     textbox.setAttribute("id", "admin-code");
-    textbox.className="textbox2";
+    textbox.className="w-full mb-2 border-2 border-blue-400";
     let xbutton = document.createElement("button")
-    xbutton.className = "button5";
-    xbutton.innerHTML = "X";
+    xbutton.className = "px-1 py-1.5 bg-red-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-red-700";
+    xbutton.innerHTML = "Cancel";
     xbutton.onclick=function() {
         wantsadmin=false;
         let div = document.getElementById("admin-button");
+        div.className="grid"
         div.innerHTML = "";
+        let div2 = document.createElement("div")
+        div2.className="btn btn-primary justify-self-center btn-sm"
         let adminbutton = document.createElement("button")
-        adminbutton.className = "button5";
-        adminbutton.innerHTML="Admin? Tap here."
+        adminbutton.className = "uppercase";
+        adminbutton.innerHTML="Admin"
         adminbutton.onclick=function(){
             buildAdmin();
         }
-        div.appendChild(adminbutton);
+        ReactDOM.render(<FaUser className='float-left mr-2 mt-0.5 '/>, div2)
+        div2.appendChild(adminbutton);
+        div.appendChild(div2)
     }
     div.appendChild(textbox);
     div.appendChild(xbutton);

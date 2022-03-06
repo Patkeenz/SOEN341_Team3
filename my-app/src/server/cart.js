@@ -59,7 +59,7 @@ export async function updateQuantity(spot, newquantity){
     splitup[0] = newquantity;
     var updateditem="";
     for(var i=0; i<splitup.length; i++){
-        if(i==3){
+        if(i===3){
             updateditem+=splitup[3];
         }
         else{
@@ -69,7 +69,7 @@ export async function updateQuantity(spot, newquantity){
     allitems[spot] = updateditem;
     var updatedcart="";
     for(var i=0; i<allitems.length; i++){
-        if(i==0){
+        if(i===0){
             updatedcart+=allitems[i];
         }
         else{
