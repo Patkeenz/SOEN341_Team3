@@ -8,7 +8,7 @@ const auth = getAuth();
 var uid;
 var collection;
 
-async function getCart(){ //returns cart string
+export async function getCart(){ //returns cart string
     var usertype = await userType();
     if (usertype!=null){
         uid = auth.currentUser.uid;
