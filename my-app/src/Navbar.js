@@ -4,26 +4,50 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Bootstrap from 'react-bootstrap'
 import logo from './images/company name.png';
 import blackandred_cart from './images/blackandred_cart.png'
-import { getAuth } from 'firebase/auth'
-import { HandleLogout, logout } from './server/logout'
+//import { getAuth } from 'firebase/auth'
+//import { HandleLogout, logout } from './server/logout'
 import { UserContext } from './App'
 import { useContext } from 'react';
+import { useAuth } from './server/authContext'
 
 const Navbar = () => {
 
   const { state, dispatch } = useContext(UserContext);
-  const auth = getAuth();
-  const currentUser = auth.currentUser
+  const { currentUser } = useAuth();
+  const { logout } = useAuth();
+  const { userType } = useAuth();
+  const history = useHistory();
+
+  async function HandleLogout() {
+    try{
+        await logout();
+        dispatch({type:"USER", payload:false})
+        history.push("/");
+    }
+    catch{
+        alert("Failed to log out");
+    }
+}
   let msg = "";
   if (currentUser !== null){
     msg = "Welcome back, " + currentUser.email;
   }
 
-  if (state) {
+  async function getType() {
+    var type = await userType();
+    if(type == "Admin"){
+      //alert(type);
+      return true;
+    }
+    //alert(type)
+    return false;
+  }
+
+  if (currentUser) {
     return (
       <Bootstrap.Navbar className="container-fluid" bg="light" variant="light" expand="lg">
       <Bootstrap.Container>
-        <Bootstrap.Navbar.Brand as ={Link} to="/">
+        <Bootstrap.Navbar.Brand href="/">
           <img
           src={logo}
           width="157"
@@ -63,7 +87,7 @@ const Navbar = () => {
     return (
       <Bootstrap.Navbar className="container-fluid" bg="light" variant="light" expand="lg">
       <Bootstrap.Container>
-        <Bootstrap.Navbar.Brand as ={Link} to="/">
+        <Bootstrap.Navbar.Brand href="/">
           <img
           src={logo}
           width="157"
@@ -76,9 +100,8 @@ const Navbar = () => {
         <Bootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Bootstrap.Navbar.Collapse id="basic-navbar-nav">
           <Bootstrap.Nav className="ms-auto">
-            <Bootstrap.Nav.Link as={Link} to="/login">Login</Bootstrap.Nav.Link>
+            <Bootstrap.Nav.Link href="/login">Login</Bootstrap.Nav.Link>
             <Bootstrap.Nav.Link as={Link} to="/signup">Sign up</Bootstrap.Nav.Link>
-            <Bootstrap.Nav.Link as={Link} to="/addproduct">Add product</Bootstrap.Nav.Link>
             <Bootstrap.Navbar.Brand as={Link} to="/cart">
           <img
           src={blackandred_cart}

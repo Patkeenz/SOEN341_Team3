@@ -10,37 +10,19 @@ import Cart from './Cart'
 import AddProduct from './AddProduct'
 // import Product from './Product'
 import * as Bootstrap from 'react-bootstrap'
-import { getAuth } from 'firebase/auth'
-import { handleLogout, logout } from './server/logout'
+//import { getAuth } from 'firebase/auth'
 import { createContext, useReducer } from 'react';
 import {initialState, reducer} from './reducer/useReducer';
+import { AuthProvider } from './server/authContext';
 
 export const UserContext = createContext();
 function App() {
   
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // const auth = getAuth();
-  // const currentUser = auth.currentUser
-  // let msg = ""; 
-  // if (currentUser !== null){
-  //   msg = "Welcome back, " + currentUser.email;
-  // }
-//    const history = useHistory();
-// history.push("/");
-
-//   async function handleLogout() {
-//     try{
-//         await logout();
-//         history.push("/");
-//     }
-//     catch{
-//         alert("Failed to log out");
-//     }
-// }
-
   return (
     <>
+    <AuthProvider>
     <UserContext.Provider value={{state, dispatch}}>
     <Router>
       <header className="App-header">
@@ -51,9 +33,6 @@ function App() {
           <Route exact path="/">
             <Home/>
           </Route>
-          {/* <Route path="/home">
-            <Home/>
-          </Route> */}
           <Route path="/login">
             <Login/>
           </Route>
@@ -70,6 +49,7 @@ function App() {
       </div>
     </Router>
     </UserContext.Provider>
+    </AuthProvider>
     </>
   );
 }

@@ -1,12 +1,14 @@
 import {Form, Button, Card, Container, Alert} from 'react-bootstrap';
 import { Link, useHistory, Redirect } from 'react-router-dom';
-import {login} from './server/login.js'
+//import {login} from './server/login.js'
 import { React, useState, useRef, useContext } from 'react'
 import './addProduct.css';
 import { UserContext } from './App'
+import { useAuth } from './server/authContext.js';
 
 const Login = () => {
 
+    const { login } = useAuth();
     const {state, dispatch} = useContext(UserContext);
 
     const userRef = useRef();
@@ -43,7 +45,7 @@ const Login = () => {
                         </Form.Group>
                         <br/>
                         <div className="redGlowBg">
-                            <button type="button" className="button" onClick={handleSubmit}>Log In</button>
+                            <button type="button" className="button" onClick={handleSubmit} href="/">Log In</button>
                         </div>
                     </Form>
                 </Card.Body>
