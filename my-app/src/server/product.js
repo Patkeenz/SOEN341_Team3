@@ -4,7 +4,7 @@ import {getAuth} from 'firebase/auth';
 import {userType} from "./auth.js";
 import {getItems, updateQuantity, removeItem} from "./cart.js";
 import '../Home.css';
-import { FaArrowLeft, FaCartPlus } from 'react-icons/fa'
+import { FaArrowLeft, FaCartPlus, FaSearch } from 'react-icons/fa'
 import ReactDOM, { render } from 'react-dom';
 
 const db = getDatabase(app);
@@ -110,12 +110,19 @@ function buildButtonDrop(list,buttonfunc, buttontext){
     let button = document.createElement("button");
     //button.className="button2";
     button.innerHTML=buttontext;
-    button.onclick=function() {
+    container.onclick=function() {
         buttonfunc();
     }
 
     container.appendChild(select)
-    ReactDOM.render(<FaCartPlus className='float-left mr-2 mt-1'/>, container)
+    if(buttontext === "Search")
+    {
+        ReactDOM.render(<FaSearch className='float-left mr-2 mt-1'/>, container)
+    }
+    else
+    {
+        ReactDOM.render(<FaCartPlus className='float-left mr-2 mt-1'/>, container)
+    }
     container.appendChild(button)
     buttondropdiv.appendChild(select);
     buttondropdiv.appendChild(container);
@@ -182,7 +189,7 @@ export async function buildProducts(loaded) {
     buttonContainer.className="btn btn-primary justify-self-center btn-sm"
     let button = document.createElement("button");
     button.innerHTML= "Go back";
-    button.onclick= function(){
+    buttonContainer.onclick= function(){
         buildProducts(productslist);
     }
     button.style.display = "block";
