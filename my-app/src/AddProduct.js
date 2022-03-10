@@ -1,15 +1,34 @@
 import handleUpload from './server/addproduct.js';
 import { useState } from "react";
+import { useAuth } from './server/authContext.js';
 //import './addProduct.css';
 
 const AddProduct = () => {
     const [image, setImage] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false)
+    const { userType } = useAuth()
 
     const handleChange = e => {
       if (e.target.files[0]) {
         setImage(e.target.files[0]);
       }
     };
+
+    let type = userType().then(value => {
+      type = value
+      if(type === "Admin"){
+        setIsAdmin(true)
+      }
+    })
+    
+    //Make sure only admin has access to AddProduct page, even when path url is entered
+    if (!isAdmin){
+      return(
+        <div className="absolute w-9/12 ml-40 mt-5 pl-5 border-2 border-red-700 rounded-3xl bg-black text-white">
+          <h2 className="text-white text-5xl leading-normal font-heading font-bold text-center">Error 404</h2>
+        </div>
+      )
+    }
 
     
     
