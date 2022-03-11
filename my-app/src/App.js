@@ -8,6 +8,7 @@ import Navbar from './Navbar'
 import Home from './Home'
 import Cart from './Cart'
 import AddProduct from './AddProduct'
+import AboutUs from './AboutUs'
 // import Product from './Product'
 import * as Bootstrap from 'react-bootstrap'
 //import { getAuth } from 'firebase/auth'
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route path="/addproduct">
             <AddProduct/>
+          </Route>
+          <Route path="/aboutus">
+            <AboutUs/>
           </Route>
         </Switch>
       </div>

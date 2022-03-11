@@ -102,7 +102,9 @@ const Navbar = () => {
           <Bootstrap.Nav className="ms-auto">
             <Bootstrap.Nav.Link href="/login">Login</Bootstrap.Nav.Link>
             <Bootstrap.Nav.Link href="/signup">Sign up</Bootstrap.Nav.Link>
+            <Bootstrap.Nav.Link href="/aboutus">About Us</Bootstrap.Nav.Link>
             <Bootstrap.Navbar.Brand as={Link} to="/cart">
+            
           <img
           src={blackandred_cart}
           width="40"
@@ -110,6 +112,7 @@ const Navbar = () => {
           className="highlight"
           alt="logo"
           />
+          
             </Bootstrap.Navbar.Brand>
           </Bootstrap.Nav>
         </Bootstrap.Navbar.Collapse>
