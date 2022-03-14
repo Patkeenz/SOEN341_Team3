@@ -112,22 +112,22 @@ export async function buildCheckout(loaded) {
       title.innerHTML = "Supported Payment Methods";
       let maindiv = document.getElementById("usercart");
       maindiv.innerHTML="";
-      // Commented code is a dummy purchase button
-      /* let purchase = document.createElement("button");
+      // Below is a dummy purchase button
+      let purchase = document.createElement("button");
       purchase.className= "button6";
       purchase.innerHTML=("Purchase");
       purchase.onclick=function(){     
         purchased();
     }
       maindiv.append(purchase);
- */
+ 
   }
-/* 
+ 
   export function purchased(){       
     let title = document.getElementById("cart-title");
     title.innerHTML = "Order Completed";
     let maindiv = document.getElementById("usercart");
     maindiv.innerHTML="";      
-  } */
+  } 
 
   
