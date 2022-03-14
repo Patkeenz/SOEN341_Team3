@@ -106,10 +106,177 @@ export async function buildCheckout(loaded) {
     return products
   }
 
-  export function paymentBuilder(){
-      //create the form for users to put in their payment info
+  export function paymentBuilder()
+  {
+      //create the form for users to put in their payment and shipping info
       let title = document.getElementById("cart-title");
-      title.innerHTML = "Supported Payment Methods";
+      title.innerHTML = "Payment and shipping";
       let maindiv = document.getElementById("usercart");
-      maindiv.innerHTML="Pay up!";
+      maindiv.innerHTML = "";
+
+      // create and append a form for all info
+      let infoForm = document.createElement("form");;
+      maindiv.append(infoForm);
+
+      // create a div within the credit card form
+      let cardsDiv = document.createElement("div");
+
+      // ask user to input their info
+      let instructions = document.createElement("p");
+      instructions.innerHTML = "Please fill out your credit card information";
+
+      // insert textbox and label for card number
+      let cardNumberInput = document.createElement("input");
+      cardNumberInput.type = "text";
+      cardNumberInput.id = "cardNumber";
+      let cardNumberLabel = document.createElement("label");
+      cardNumberLabel.setAttribute("for", "cardNumber");
+      cardNumberLabel.innerHTML = "Card Number:";
+
+      // insert textbox and label for card expiraion date
+      let cardDateInput = document.createElement("input");
+      cardDateInput.type = "text";
+      cardDateInput.id = "cardDate";
+      let cardDateLabel = document.createElement("label");
+      cardDateLabel.setAttribute("for", "cardDate");
+      cardDateLabel.innerHTML = "Expiration Date:";
+
+      // insert textbox and label for card expiraion date
+      let cardCVVInput = document.createElement("input");
+      cardCVVInput.type = "text";
+      cardCVVInput.id = "cardCVV";
+      let cardCVVLabel = document.createElement("label");
+      cardCVVLabel.setAttribute("for", "cardCVV");
+      cardCVVLabel.innerHTML = "CVV Numbers:";
+
+      // create break line tags
+      let breakLine1 = document.createElement("br");
+      let breakLine2 = document.createElement("br");
+      let breakLine3 = document.createElement("br");
+
+      // apend everything credit card related
+      infoForm.append(cardsDiv);
+      cardsDiv.append(instructions);
+      cardsDiv.append(cardNumberInput);
+      cardsDiv.append(cardNumberLabel);
+      cardsDiv.append(breakLine1);
+      cardsDiv.append(cardDateInput);
+      cardsDiv.append(cardDateLabel);
+      cardsDiv.append(breakLine2);
+      cardsDiv.append(cardCVVInput);
+      cardsDiv.append(cardCVVLabel);
+      cardsDiv.append(breakLine3);
+
+      // create a div for the shipping information
+      let shippingDiv = document.createElement("div");
+
+      // tell user to input shipping info
+      let shippingInstructions = document.createElement("p");
+      shippingInstructions.innerHTML = "Please fill out your shipping information";
+
+      // insert textbox and label for first name
+      let firstNameInput = document.createElement("input");
+      firstNameInput.type = "text";
+      firstNameInput.id = "firstName";
+      let firstNameLabel = document.createElement("label");
+      firstNameLabel.setAttribute("for", "firstName");
+      firstNameLabel.innerHTML = "First Name:";
+
+      // insert textbox and label for last name
+      let lastNameInput = document.createElement("input");
+      lastNameInput.type = "text";
+      lastNameInput.id = "lastName";
+      let lastNameLabel = document.createElement("label");
+      lastNameLabel.setAttribute("for", "lastName");
+      lastNameLabel.innerHTML = "Last Name:";
+      
+      // insert textbox and label for last name
+      let phoneInput = document.createElement("input");
+      phoneInput.type = "text";
+      phoneInput.id = "phoneNumber";
+      let phoneLabel = document.createElement("label");
+      phoneLabel.setAttribute("for", "phoneNumber");
+      phoneLabel.innerHTML = "Phone number:";
+
+      // insert textbox and label for address
+      let addressInput = document.createElement("input");
+      addressInput.type = "text";
+      addressInput.id = "address";
+      let addressLabel = document.createElement("label");
+      addressLabel.setAttribute("for", "address");
+      addressLabel.innerHTML = "Address:";
+
+      // insert textbox and label for city
+      let cityInput = document.createElement("input");
+      cityInput.type = "text";
+      cityInput.id = "city";
+      let cityLabel = document.createElement("label");
+      cityLabel.setAttribute("for", "city");
+      cityLabel.innerHTML = "City:";
+
+      // insert textbox and label for postal code
+      let postalCodeInput = document.createElement("input");
+      postalCodeInput.type = "text";
+      postalCodeInput.id = "postaCode";
+      let postalCodeLabel = document.createElement("label");
+      cityLabel.setAttribute("for", "postalCode");
+      cityLabel.innerHTML = "Postal code:";
+
+
+      // create break line tags
+      let breakLine4 = document.createElement("br");
+      let breakLine5 = document.createElement("br");
+      let breakLine6 = document.createElement("br");
+      let breakLine7 = document.createElement("br");
+      let breakLine8 = document.createElement("br");
+      let breakLine9 = document.createElement("br");
+
+      // appened everything shipping related
+      infoForm.append(shippingDiv);
+      shippingDiv.append(shippingInstructions);
+      shippingDiv.append(firstNameInput);
+      shippingDiv.append(firstNameLabel);
+      shippingDiv.append(breakLine4);
+      shippingDiv.append(lastNameInput);
+      shippingDiv.append(lastNameLabel);
+      shippingDiv.append(breakLine5);
+      shippingDiv.append(phoneInput);
+      shippingDiv.append(phoneLabel);
+      shippingDiv.append(breakLine6);
+      shippingDiv.append(addressInput);
+      shippingDiv.append(addressLabel);
+      shippingDiv.append(breakLine7);
+      shippingDiv.append(cityInput);
+      shippingDiv.append(cityLabel);
+      shippingDiv.append(breakLine8);
+      shippingDiv.append(postalCodeInput);
+      shippingDiv.append(postalCodeLabel);
+      shippingDiv.append(breakLine9);
+
+      // create an order button
+      let orderButton = document.createElement("input");
+      orderButton.setAttribute("type", "submit");
+      orderButton.onclick = function(){ buildOrderConfirmation(); }
+      orderButton.setAttribute("value", "Order");
+
+      // append order button
+      maindiv.append(orderButton);
+      
+  }
+
+  export function buildOrderConfirmation()
+  {
+    // todo before this fuction continues
+    // verify that all the fields are filled out (required keyword)
+    // verify that:
+    // names are letters
+    // phone num is 10 numbers
+    // postal code is right formal
+    // credit card info exists (from 5 predetermined)
+
+    // remove everything from page and replace it w/ confirmation message that order is complete
+    let title = document.getElementById("cart-title");
+    title.innerHTML = "Order complete";
+    let maindiv = document.getElementById("usercart");
+    maindiv.innerHTML = "";
   }
