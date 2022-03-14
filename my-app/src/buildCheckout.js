@@ -219,8 +219,8 @@ export async function buildCheckout(loaded) {
       postalCodeInput.type = "text";
       postalCodeInput.id = "postaCode";
       let postalCodeLabel = document.createElement("label");
-      cityLabel.setAttribute("for", "postalCode");
-      cityLabel.innerHTML = "Postal code:";
+      postalCodeLabel.setAttribute("for", "postalCode");
+      postalCodeLabel.innerHTML = "Postal code:";
 
 
       // create break line tags
@@ -253,30 +253,145 @@ export async function buildCheckout(loaded) {
       shippingDiv.append(postalCodeLabel);
       shippingDiv.append(breakLine9);
 
+      // create an array of all the inputs
+      var inputs = [cardNumberInput, cardDateInput, cardCVVInput, firstNameInput, lastNameInput,
+         phoneInput, addressInput, cityInput, postalCodeInput]; 
+
+
       // create an order button
       let orderButton = document.createElement("input");
       orderButton.setAttribute("type", "submit");
-      orderButton.onclick = function(){ buildOrderConfirmation(); }
-      orderButton.setAttribute("value", "Order");
+      orderButton.addEventListener("click", function(event){
+        event.preventDefault();
+        buildOrderConfirmation(inputs); 
+      });
+      
+      orderButton.innerHTML = "Order";
 
       // append order button
-      maindiv.append(orderButton);
-      
-  }
+      infoForm.append(orderButton);
+}
 
-  export function buildOrderConfirmation()
+  export function buildOrderConfirmation(input)
   {
-    // todo before this fuction continues
-    // verify that all the fields are filled out (required keyword)
-    // verify that:
-    // names are letters
-    // phone num is 10 numbers
-    // postal code is right formal
-    // credit card info exists (from 5 predetermined)
+    // boolean var: true if all requirements are met
+    var formRequirementsMet = true;
 
-    // remove everything from page and replace it w/ confirmation message that order is complete
-    let title = document.getElementById("cart-title");
-    title.innerHTML = "Order complete";
-    let maindiv = document.getElementById("usercart");
-    maindiv.innerHTML = "";
+    // crete default cards
+    let cards = [["12345", "12/34", "123"], ["23456", "23/45", "234"], ["34567", "34/56", "345"], 
+                    ["45678", "45/67", "456"], ["56789", "56/78", "567"]];
+
+    // make sure all fields are filled
+    var allFieldsFull = true;
+    for(var i = 0; i<input.length; i++)
+    {
+        if(input[i].value == "")
+        {
+            allFieldsFull = false;
+        }
+    }
+
+    // name all values
+    var cardNum = input[0].value;
+    var cardDate = input[1].value;
+    var cardCVV = input[2].value;
+    var first = input[3].value;
+    var last = input[4].value;
+    var phone = input[5].value;
+    var address = input[6].value;
+    var city = input[7].value;
+    var postal = input[8].value;
+
+    // check the card matches an existing card
+    var validCard = false;
+    for(var i = 0; i < cards.length; i++) 
+    {
+        if(cards[i][0] == cardNum && cards[i][1] == cardDate && cards[i][2] == cardCVV)
+        {
+            validCard = true;
+        }
+    }
+    if(!validCard)
+    {
+        formRequirementsMet = false;
+    }
+
+    // verify that the first name last name and city are letters
+    var validFirst = true;
+    var validLast = true;
+    var validCity = true;
+    if(!/^[a-zA-Z\s]+$/.test(first))
+    {
+        formRequirementsMet = false;
+        validFirst = false;
+    }
+    if(!/^[a-zA-Z\s]+$/.test(last))
+    {
+        formRequirementsMet = false;
+        validLast = false;
+    }
+    if(!/^[a-zA-Z\s]+$/.test(city))
+    {
+        formRequirementsMet = false;
+        validCity = false;
+    }
+
+    // verify that the phone number is 10 digits
+    var validPhone = true;
+    if(!/^\d+$/.test(phone) || phone.length != 10)
+    {
+        formRequirementsMet = false;
+        validPhone = false;
+    }
+
+    // verify that the postal code is in an accepted format
+    var validPostal = true;
+    if(!/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i.test(postal))
+    {
+        formRequirementsMet = false;
+        validPostal = false;
+    }
+
+    if(formRequirementsMet)
+    {
+        // remove everything from page and replace it w/ confirmation message that order is complete
+        let title = document.getElementById("cart-title");
+        title.innerHTML = "Order complete";
+        let maindiv = document.getElementById("usercart");
+        maindiv.innerHTML = "";
+    }
+    else
+    {
+        if(!allFieldsFull)
+        {
+            alert("All fields must be filled.");
+        }
+        else
+        {
+            if(!validCard)
+            {
+                alert("Invalid card.");
+            }
+            if(!validFirst)
+            {
+                alert("Invalid first name.")
+            }
+            if(!validLast)
+            {
+                alert("Invalid last name.")
+            }
+            if(!validCity)
+            {
+                alert("Invalid city.")
+            }
+            if(!validPhone)
+            {
+                alert("Invalid phone number");
+            }
+            if(!validPostal)
+            {
+                alert("Invalid postal code")
+            }
+        }
+    }
   }
