@@ -214,6 +214,14 @@ export async function buildCheckout(loaded) {
       cityLabel.setAttribute("for", "city");
       cityLabel.innerHTML = "City:";
 
+      // insert textbox and label for country
+      let countryInput = document.createElement("input");
+      countryInput.type = "text";
+      countryInput.id = "country";
+      let countryLabel = document.createElement("label");
+      countryLabel.setAttribute("for", "country");
+      countryLabel.innerHTML = "Country:";
+
       // insert textbox and label for postal code
       let postalCodeInput = document.createElement("input");
       postalCodeInput.type = "text";
@@ -230,6 +238,7 @@ export async function buildCheckout(loaded) {
       let breakLine7 = document.createElement("br");
       let breakLine8 = document.createElement("br");
       let breakLine9 = document.createElement("br");
+      let breakLine10 = document.createElement("br");
 
       // appened everything shipping related
       infoForm.append(shippingDiv);
@@ -248,6 +257,9 @@ export async function buildCheckout(loaded) {
       shippingDiv.append(breakLine7);
       shippingDiv.append(cityInput);
       shippingDiv.append(cityLabel);
+      shippingDiv.append(breakLine10);
+      shippingDiv.append(countryInput);
+      shippingDiv.append(countryLabel);
       shippingDiv.append(breakLine8);
       shippingDiv.append(postalCodeInput);
       shippingDiv.append(postalCodeLabel);
@@ -255,7 +267,7 @@ export async function buildCheckout(loaded) {
 
       // create an array of all the inputs
       var inputs = [cardNumberInput, cardDateInput, cardCVVInput, firstNameInput, lastNameInput,
-         phoneInput, addressInput, cityInput, postalCodeInput]; 
+         phoneInput, addressInput, cityInput, postalCodeInput, countryInput]; 
 
 
       // create an order button
@@ -301,6 +313,7 @@ export async function buildCheckout(loaded) {
     var address = input[6].value;
     var city = input[7].value;
     var postal = input[8].value;
+    var country = input[9].value;
 
     // check the card matches an existing card
     var validCard = false;
@@ -320,6 +333,7 @@ export async function buildCheckout(loaded) {
     var validFirst = true;
     var validLast = true;
     var validCity = true;
+    var validCountry = true;
     if(!/^[a-zA-Z\s]+$/.test(first))
     {
         formRequirementsMet = false;
@@ -334,6 +348,11 @@ export async function buildCheckout(loaded) {
     {
         formRequirementsMet = false;
         validCity = false;
+    }
+    if(!/^[a-zA-Z\s]+$/.test(country))
+    {
+        formRequirementsMet = false;
+        validCountry = false;
     }
 
     // verify that the phone number is 10 digits
@@ -386,11 +405,15 @@ export async function buildCheckout(loaded) {
             }
             if(!validPhone)
             {
-                alert("Invalid phone number");
+                alert("Invalid phone number.");
             }
             if(!validPostal)
             {
-                alert("Invalid postal code")
+                alert("Invalid postal code.")
+            }
+            if(!validCountry)
+            {
+                alert("Invalid country name.")
             }
         }
     }
