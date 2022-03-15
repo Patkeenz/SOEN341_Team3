@@ -131,6 +131,7 @@ export async function buildCheckout(loaded) {
       cardNumberInput.id = "cardNumber";
       let cardNumberLabel = document.createElement("label");
       cardNumberLabel.setAttribute("for", "cardNumber");
+      cardNumberLabel.setAttribute("class", "formLabel");
       cardNumberLabel.innerHTML = "Card Number:";
 
       // insert textbox and label for card expiraion date
@@ -157,14 +158,14 @@ export async function buildCheckout(loaded) {
       // apend everything credit card related
       infoForm.append(cardsDiv);
       cardsDiv.append(instructions);
-      cardsDiv.append(cardNumberInput);
       cardsDiv.append(cardNumberLabel);
+      cardsDiv.append(cardNumberInput);
       cardsDiv.append(breakLine1);
-      cardsDiv.append(cardDateInput);
       cardsDiv.append(cardDateLabel);
+      cardsDiv.append(cardDateInput);
       cardsDiv.append(breakLine2);
-      cardsDiv.append(cardCVVInput);
       cardsDiv.append(cardCVVLabel);
+      cardsDiv.append(cardCVVInput);
       cardsDiv.append(breakLine3);
 
       // create a div for the shipping information
@@ -243,26 +244,26 @@ export async function buildCheckout(loaded) {
       // appened everything shipping related
       infoForm.append(shippingDiv);
       shippingDiv.append(shippingInstructions);
-      shippingDiv.append(firstNameInput);
       shippingDiv.append(firstNameLabel);
+      shippingDiv.append(firstNameInput);
       shippingDiv.append(breakLine4);
-      shippingDiv.append(lastNameInput);
       shippingDiv.append(lastNameLabel);
+      shippingDiv.append(lastNameInput);
       shippingDiv.append(breakLine5);
-      shippingDiv.append(phoneInput);
       shippingDiv.append(phoneLabel);
+      shippingDiv.append(phoneInput);
       shippingDiv.append(breakLine6);
-      shippingDiv.append(addressInput);
       shippingDiv.append(addressLabel);
+      shippingDiv.append(addressInput);
       shippingDiv.append(breakLine7);
-      shippingDiv.append(cityInput);
       shippingDiv.append(cityLabel);
+      shippingDiv.append(cityInput);
       shippingDiv.append(breakLine10);
-      shippingDiv.append(countryInput);
       shippingDiv.append(countryLabel);
+      shippingDiv.append(countryInput);
       shippingDiv.append(breakLine8);
-      shippingDiv.append(postalCodeInput);
       shippingDiv.append(postalCodeLabel);
+      shippingDiv.append(postalCodeInput);
       shippingDiv.append(breakLine9);
 
       // create an array of all the inputs
@@ -273,6 +274,7 @@ export async function buildCheckout(loaded) {
       // create an order button
       let orderButton = document.createElement("input");
       orderButton.setAttribute("type", "submit");
+      orderButton.setAttribute("class", "updateButton");
       orderButton.addEventListener("click", function(event){
         event.preventDefault();
         buildOrderConfirmation(inputs); 
