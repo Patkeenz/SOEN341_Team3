@@ -124,14 +124,16 @@ export async function buildCheckout(loaded) {
       // ask user to input their info
       let instructions = document.createElement("p");
       instructions.innerHTML = "Please fill out your credit card information";
-
+      instructions.setAttribute("class", "updateTitle");
+    
       // insert textbox and label for card number
       let cardNumberInput = document.createElement("input");
       cardNumberInput.type = "text";
+      cardNumberInput.setAttribute("class", "labelBorder")
       cardNumberInput.id = "cardNumber";
       let cardNumberLabel = document.createElement("label");
       cardNumberLabel.setAttribute("for", "cardNumber");
-      cardNumberLabel.setAttribute("class", "formLabel");
+      cardNumberLabel.setAttribute("class", "fieldRequired");
       cardNumberLabel.innerHTML = "Card Number:";
 
       // insert textbox and label for card expiraion date
@@ -174,6 +176,7 @@ export async function buildCheckout(loaded) {
       // tell user to input shipping info
       let shippingInstructions = document.createElement("p");
       shippingInstructions.innerHTML = "Please fill out your shipping information";
+      shippingInstructions.setAttribute("class", "updateTitle");
 
       // insert textbox and label for first name
       let firstNameInput = document.createElement("input");

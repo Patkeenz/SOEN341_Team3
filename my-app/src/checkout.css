@@ -36,3 +36,23 @@
   background-color: rgb(0, 112, 6);
   color: white;
 }
+
+.updateTitle
+{
+font-size: 30px;
+
+}
+
+.fieldRequired
+{
+
+  font-size: 20px;
+  margin: 5px;
+
+}
+
+.labelBorder
+{
+
+border: 1px solid black;  
+}
