@@ -129,7 +129,7 @@ export async function buildCheckout(loaded) {
       // insert textbox and label for card number
       let cardNumberInput = document.createElement("input");
       cardNumberInput.type = "text";
-      cardNumberInput.setAttribute("class", "labelBorder")
+      cardNumberInput.setAttribute("class", "labelBorder");
       cardNumberInput.id = "cardNumber";
       let cardNumberLabel = document.createElement("label");
       cardNumberLabel.setAttribute("for", "cardNumber");
@@ -140,16 +140,20 @@ export async function buildCheckout(loaded) {
       let cardDateInput = document.createElement("input");
       cardDateInput.type = "text";
       cardDateInput.id = "cardDate";
+      cardDateInput.setAttribute("class", "labelBorder");
       let cardDateLabel = document.createElement("label");
       cardDateLabel.setAttribute("for", "cardDate");
+      cardDateLabel.setAttribute("class", "fieldRequired");
       cardDateLabel.innerHTML = "Expiration Date:";
 
       // insert textbox and label for card expiraion date
       let cardCVVInput = document.createElement("input");
       cardCVVInput.type = "text";
       cardCVVInput.id = "cardCVV";
+      cardCVVInput.setAttribute("class", "labelBorder");
       let cardCVVLabel = document.createElement("label");
       cardCVVLabel.setAttribute("for", "cardCVV");
+      cardCVVLabel.setAttribute("class", "fieldRequired");
       cardCVVLabel.innerHTML = "CVV Numbers:";
 
       // create break line tags
@@ -182,56 +186,70 @@ export async function buildCheckout(loaded) {
       let firstNameInput = document.createElement("input");
       firstNameInput.type = "text";
       firstNameInput.id = "firstName";
+      firstNameInput.setAttribute("class", "labelBorder");
       let firstNameLabel = document.createElement("label");
       firstNameLabel.setAttribute("for", "firstName");
+      firstNameLabel.setAttribute("class","fieldRequired");
       firstNameLabel.innerHTML = "First Name:";
 
       // insert textbox and label for last name
       let lastNameInput = document.createElement("input");
       lastNameInput.type = "text";
       lastNameInput.id = "lastName";
+      lastNameInput.setAttribute("class", "labelBorder");
       let lastNameLabel = document.createElement("label");
       lastNameLabel.setAttribute("for", "lastName");
+      lastNameLabel.setAttribute("class","fieldRequired");
       lastNameLabel.innerHTML = "Last Name:";
       
       // insert textbox and label for last name
       let phoneInput = document.createElement("input");
       phoneInput.type = "text";
       phoneInput.id = "phoneNumber";
+      phoneInput.setAttribute("class", "labelBorder");
+
       let phoneLabel = document.createElement("label");
       phoneLabel.setAttribute("for", "phoneNumber");
+      phoneLabel.setAttribute("class","fieldRequired");
       phoneLabel.innerHTML = "Phone number:";
-
       // insert textbox and label for address
       let addressInput = document.createElement("input");
       addressInput.type = "text";
       addressInput.id = "address";
+      addressInput.setAttribute("class", "labelBorder");
       let addressLabel = document.createElement("label");
       addressLabel.setAttribute("for", "address");
+      addressLabel.setAttribute("class","fieldRequired");
       addressLabel.innerHTML = "Address:";
 
       // insert textbox and label for city
       let cityInput = document.createElement("input");
       cityInput.type = "text";
       cityInput.id = "city";
+      cityInput.setAttribute("class", "labelBorder");
       let cityLabel = document.createElement("label");
       cityLabel.setAttribute("for", "city");
+      cityLabel.setAttribute("class","fieldRequired");
       cityLabel.innerHTML = "City:";
 
       // insert textbox and label for country
       let countryInput = document.createElement("input");
       countryInput.type = "text";
       countryInput.id = "country";
+      countryInput.setAttribute("class", "labelBorder");
       let countryLabel = document.createElement("label");
       countryLabel.setAttribute("for", "country");
+      countryLabel.setAttribute("class","fieldRequired");
       countryLabel.innerHTML = "Country:";
 
       // insert textbox and label for postal code
       let postalCodeInput = document.createElement("input");
       postalCodeInput.type = "text";
       postalCodeInput.id = "postaCode";
+      postalCodeInput.setAttribute("class", "labelBorder");
       let postalCodeLabel = document.createElement("label");
       postalCodeLabel.setAttribute("for", "postalCode");
+      postalCodeLabel.setAttribute("class","fieldRequired");
       postalCodeLabel.innerHTML = "Postal code:";
 
 
