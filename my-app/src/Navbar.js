@@ -7,12 +7,13 @@ import blackandred_cart from './images/blackandred_cart.png'
 //import { getAuth } from 'firebase/auth'
 //import { HandleLogout, logout } from './server/logout'
 import { UserContext } from './App'
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useAuth } from './server/authContext'
 
 const Navbar = () => {
 
   const { state, dispatch } = useContext(UserContext);
+  const [isAdmin, setIsAdmin] = useState(false)
   const { currentUser } = useAuth();
   const { logout } = useAuth();
   const { userType } = useAuth();
@@ -29,19 +30,18 @@ const Navbar = () => {
     }
 }
   let msg = "";
-  if (currentUser !== null){
-    msg = "Welcome back, " + currentUser.email;
+  if (currentUser !== null && currentUser.displayName !== null){
+    msg = "Welcome back, " + currentUser.displayName;
   }
 
-  async function getType() {
-    var type = await userType();
-    if(type == "Admin"){
-      //alert(type);
-      return true;
+  //Check if user is an admin or a user
+  let type = userType().then(value => {
+    type = value
+    if(type === "Admin"){
+      setIsAdmin(true)
     }
-    //alert(type)
-    return false;
-  }
+  })
+
 
   if (currentUser) {
     return (
@@ -60,7 +60,7 @@ const Navbar = () => {
         <Bootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Bootstrap.Navbar.Collapse id="basic-navbar-nav">
           <Bootstrap.Nav className="ms-auto">
-            <Bootstrap.Nav.Link as={Link} to="/addproduct">Add product</Bootstrap.Nav.Link>
+            {isAdmin && <Bootstrap.Nav.Link as={Link} to="/addproduct">Add product</Bootstrap.Nav.Link>}
             <Bootstrap.Navbar.Brand as={Link} to="/cart">
           <img
           src={blackandred_cart}
@@ -101,8 +101,10 @@ const Navbar = () => {
         <Bootstrap.Navbar.Collapse id="basic-navbar-nav">
           <Bootstrap.Nav className="ms-auto">
             <Bootstrap.Nav.Link href="/login">Login</Bootstrap.Nav.Link>
-            <Bootstrap.Nav.Link as={Link} to="/signup">Sign up</Bootstrap.Nav.Link>
+            <Bootstrap.Nav.Link href="/signup">Sign up</Bootstrap.Nav.Link>
+            <Bootstrap.Nav.Link href="/aboutus">About Us</Bootstrap.Nav.Link>
             <Bootstrap.Navbar.Brand as={Link} to="/cart">
+            
           <img
           src={blackandred_cart}
           width="40"
@@ -110,6 +112,7 @@ const Navbar = () => {
           className="highlight"
           alt="logo"
           />
+          
             </Bootstrap.Navbar.Brand>
           </Bootstrap.Nav>
         </Bootstrap.Navbar.Collapse>

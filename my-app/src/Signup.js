@@ -1,10 +1,30 @@
-import {checkForValidPassword, buildAdmin} from './server/signup.js';
+//import {checkForValidPassword, buildAdmin} from './server/signup.js';
 import {Form, Card, Container} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './addProduct.css';
 import { FaUser } from 'react-icons/fa'
+import { useAuth } from './server/authContext.js';
 
 const Signup = () => {
+    const { handleSignup, buildAdmin, currentUser } = useAuth();
+
+    if (currentUser) {
+        return (
+            <>
+        <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh"}}>
+            <Card className="w-100 border-3 border-red-400" border="danger" style={{ maxWidth: "400px"}}>
+                <Card.Body>
+                    <h2 className="text-center mb-4">Thank you for signing up!</h2>
+                    
+                </Card.Body>
+                <div className="w-100 text-center mb-2">
+                <a href="/"><button className="inline-block mr-3 px-2 py-1.5 bg-red-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-red-700">Go Home</button></a>
+            </div>
+            </Card>
+        </Container>
+        </>
+        );
+    }
     return (
         <>
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh"}}>
@@ -52,7 +72,7 @@ const Signup = () => {
                         <br/>
                         <div className="relative py-3 grid">
                             <button type="button" className="inline-block justify-self-center px-3 py-2.5 bg-red-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-red-700"
-                            onClick={() =>(checkForValidPassword('admin'))}>Sign up</button>
+                            onClick={() =>(handleSignup())}>Sign up</button>
                         </div>
                     </Form>
                 </Card.Body>
