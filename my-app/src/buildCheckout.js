@@ -162,17 +162,23 @@ export async function buildCheckout(loaded) {
       let breakLine1 = document.createElement("br");
       let breakLine2 = document.createElement("br");
       let breakLine3 = document.createElement("br");
+      let breakLine18 = document.createElement("br");
+      let breakLine19 = document.createElement("br");
+      let breakLine20 = document.createElement("br");
 
       // apend everything credit card related
       infoForm.append(cardsDiv);
       cardsDiv.append(instructions);
       cardsDiv.append(cardNumberLabel);
+      cardsDiv.append(breakLine18);
       cardsDiv.append(cardNumberInput);
       cardsDiv.append(breakLine1);
       cardsDiv.append(cardDateLabel);
+      cardsDiv.append(breakLine19);
       cardsDiv.append(cardDateInput);
       cardsDiv.append(breakLine2);
       cardsDiv.append(cardCVVLabel);
+      cardsDiv.append(breakLine20);
       cardsDiv.append(cardCVVInput);
       cardsDiv.append(breakLine3);
 
@@ -264,28 +270,43 @@ export async function buildCheckout(loaded) {
       let breakLine9 = document.createElement("br");
       let breakLine10 = document.createElement("br");
 
+      let breakLine11 = document.createElement("br");
+      let breakLine12 = document.createElement("br");
+      let breakLine13 = document.createElement("br");
+      let breakLine14 = document.createElement("br");
+      let breakLine15 = document.createElement("br");
+      let breakLine16 = document.createElement("br");
+      let breakLine17 = document.createElement("br");
+
       // appened everything shipping related
       infoForm.append(shippingDiv);
       shippingDiv.append(shippingInstructions);
       shippingDiv.append(firstNameLabel);
+      shippingDiv.append(breakLine11);
       shippingDiv.append(firstNameInput);
       shippingDiv.append(breakLine4);
       shippingDiv.append(lastNameLabel);
+      shippingDiv.append(breakLine12);
       shippingDiv.append(lastNameInput);
       shippingDiv.append(breakLine5);
       shippingDiv.append(phoneLabel);
+      shippingDiv.append(breakLine13);
       shippingDiv.append(phoneInput);
       shippingDiv.append(breakLine6);
       shippingDiv.append(addressLabel);
+      shippingDiv.append(breakLine14);
       shippingDiv.append(addressInput);
       shippingDiv.append(breakLine7);
       shippingDiv.append(cityLabel);
+      shippingDiv.append(breakLine15);
       shippingDiv.append(cityInput);
       shippingDiv.append(breakLine10);
       shippingDiv.append(countryLabel);
+      shippingDiv.append(breakLine16);
       shippingDiv.append(countryInput);
       shippingDiv.append(breakLine8);
       shippingDiv.append(postalCodeLabel);
+      shippingDiv.append(breakLine17);
       shippingDiv.append(postalCodeInput);
       shippingDiv.append(breakLine9);
 
