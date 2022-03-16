@@ -1,3 +1,4 @@
+import { Card } from "react-bootstrap";
 import {getItems, removeItem, updateQuantity} from "./server/cart.js"
 
 
@@ -108,6 +109,7 @@ export async function buildCheckout(loaded) {
 
   export function paymentBuilder()
   {
+
       //create the form for users to put in their payment and shipping info
       let title = document.getElementById("cart-title");
       title.innerHTML = "Payment and shipping";
@@ -307,8 +309,15 @@ export async function buildCheckout(loaded) {
       infoForm.append(orderButton);
 }
 
-  export function buildOrderConfirmation(input)
+  export async function buildOrderConfirmation(input, loaded)
   {
+    if(!loaded){
+        var products = await getItems();
+      }
+      else{
+        products = loaded;
+    }
+
     // boolean var: true if all requirements are met
     var formRequirementsMet = true;
 
@@ -320,9 +329,15 @@ export async function buildCheckout(loaded) {
     var allFieldsFull = true;
     for(var i = 0; i<input.length; i++)
     {
+        // initialize all the fields have black borders (remove red if fields were fixed)
+        input[i].setAttribute("class", "labelBorder");
+
         if(input[i].value == "")
         {
             allFieldsFull = false;
+
+            // make the label border red for missed fields
+            input[i].setAttribute("class", "invalidLabelBorder");
         }
     }
 
@@ -396,6 +411,12 @@ export async function buildCheckout(loaded) {
 
     if(formRequirementsMet)
     {
+        // remove all items from the cart
+        for(var i = (products.length)-1; i >= 0; i--)
+        {
+            await removeItem(i);
+        }
+
         // remove everything from page and replace it w/ confirmation message that order is complete
         let title = document.getElementById("cart-title");
         title.innerHTML = "Order complete";
@@ -413,30 +434,37 @@ export async function buildCheckout(loaded) {
             if(!validCard)
             {
                 alert("Invalid card.");
+                input[0].setAttribute("class", "invalidLabelBorder");
             }
             if(!validFirst)
             {
-                alert("Invalid first name.")
+                alert("Invalid first name.");
+                input[3].setAttribute("class", "invalidLabelBorder");
             }
             if(!validLast)
             {
-                alert("Invalid last name.")
+                alert("Invalid last name.");
+                input[4].setAttribute("class", "invalidLabelBorder");
             }
             if(!validCity)
             {
-                alert("Invalid city.")
+                alert("Invalid city.");
+                input[7].setAttribute("class", "invalidLabelBorder");
             }
             if(!validPhone)
             {
                 alert("Invalid phone number.");
+                input[5].setAttribute("class", "invalidLabelBorder");
             }
             if(!validPostal)
             {
-                alert("Invalid postal code.")
+                alert("Invalid postal code.");
+                input[8].setAttribute("class", "invalidLabelBorder");
             }
             if(!validCountry)
             {
-                alert("Invalid country name.")
+                alert("Invalid country name.");
+                input[9].setAttribute("class", "invalidLabelBorder");
             }
         }
     }
