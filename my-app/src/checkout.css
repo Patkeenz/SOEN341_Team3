@@ -32,7 +32,45 @@
 
 .updateButton
 {
-  width: 70px;
-  background-color: rgb(0, 112, 6);
-  color: white;
+  position:absolute;
+  top: -100; 
+  bottom: 0; 
+  margin-left: -125px; 
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 40px;
+  width: 150px;
+  background-color: #232B22;
+  color: #F44F6A;
+  border: #F44F6A;
+  border-radius: 5px;
+}
+
+.updateTitle
+{
+  margin-left: 10px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.fieldRequired
+{
+
+  font-size: 15px;
+  margin: 5px;
+  margin-left: 10px;
+}
+
+.labelBorder
+{ 
+  border: 1px solid black;  
+  margin-left: 10px;
+}
+
+.invalidLabelBorder
+{
+  border: 1.5px solid red;  
+  margin-left: 10px;
 }
