@@ -72,7 +72,7 @@ const Navbar = () => {
             </Bootstrap.Navbar.Brand>
             <Bootstrap.NavDropdown title="Account" id="basic-nav-dropdown">
               <Bootstrap.NavDropdown.Item href="#action/3.1">My Profile</Bootstrap.NavDropdown.Item>
-              <Bootstrap.NavDropdown.Item href="#action/3.2">Orders</Bootstrap.NavDropdown.Item>
+              <Bootstrap.NavDropdown.Item as={Link} to="/orders">Orders</Bootstrap.NavDropdown.Item>
               <Bootstrap.NavDropdown.Item href="#action/3.3">Privacy/Settings</Bootstrap.NavDropdown.Item>
               <Bootstrap.NavDropdown.Divider />
               <Bootstrap.NavDropdown.Item onClick={HandleLogout} href="/">Logout</Bootstrap.NavDropdown.Item>

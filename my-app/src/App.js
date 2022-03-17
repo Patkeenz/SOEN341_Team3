@@ -7,6 +7,7 @@ import Signup from './Signup'
 import Navbar from './Navbar'
 import Home from './Home'
 import Cart from './Cart'
+import Orders from './Orders'
 import AddProduct from './AddProduct'
 import AboutUs from './AboutUs'
 // import Product from './Product'
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <Signup/>
+          </Route>
+          <Route path="/orders">
+            <Orders/>
           </Route>
           <Route path="/cart">
             <Cart/>
