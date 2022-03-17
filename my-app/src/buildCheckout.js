@@ -1,4 +1,5 @@
 import { Card } from "react-bootstrap";
+import { confirmOrder, deliveryTime } from "./server/order.js";
 import {getItems, removeItem, updateQuantity} from "./server/cart.js"
 
 
@@ -433,16 +434,18 @@ export async function buildCheckout(loaded) {
     if(formRequirementsMet)
     {
         // remove all items from the cart
-        for(var i = (products.length)-1; i >= 0; i--)
-        {
-            await removeItem(i);
-        }
+        // for(var i = (products.length)-1; i >= 0; i--)
+        // {
+        //     await removeItem(i);
+        // }
 
-        // remove everything from page and replace it w/ confirmation message that order is complete
+        await confirmOrder(input[9].value, input[7].value, input[6].value);
+        //remove everything from page and replace it w/ confirmation message that order is complete
         let title = document.getElementById("cart-title");
         title.innerHTML = "Order complete";
         let maindiv = document.getElementById("usercart");
         maindiv.innerHTML = "";
+
     }
     else
     {

@@ -111,8 +111,10 @@ export async function buildCartProducts(loaded) {
         checkoutContainer.appendChild(checkoutIcon)
 
         maindiv.append(table);
-        maindiv.append(subtotalheader);
-        maindiv.append(checkoutContainer)
+        if(products.length>0){
+            maindiv.append(subtotalheader);
+            maindiv.append(checkoutContainer);
+        }
 
     return products
   }

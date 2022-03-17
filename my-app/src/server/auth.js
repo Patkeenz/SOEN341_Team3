@@ -42,8 +42,10 @@ export async function userType(){
 
 export async function getEmail(username){
     var email;
-    const collectionRef = ref(db,"Admins/"); 
-    const collectionsnap = await get((collectionRef));
+
+    const userRef = ref(db,"Users/"); 
+    const adminRef = ref(db,"Admins/"); 
+    const collectionsnap = await get((userRef));
         collectionsnap.forEach(doc=>{
             var user = doc.val().Username;
             var em = doc.val().Email;
@@ -52,5 +54,16 @@ export async function getEmail(username){
             }
             
         });
+    if (email==null){
+        const collectionsnap = await get((adminRef));
+        collectionsnap.forEach(doc=>{
+            var user = doc.val().Username;
+            var em = doc.val().Email;
+            if(username==user){
+                email = em;
+            }
+            
+        });
+    }    
     return email; 
 }

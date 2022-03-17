@@ -1,6 +1,9 @@
-import {getCart, getItems, removeItem, updateQuantity} from "./server/cart.js"
-import {getDatabase, get, update, ref, deleteField} from 'firebase/database';
+import {getCart, getItems, removeItem, updateQuantity} from "../server/cart.js"
+import {getDatabase, get, update, ref, remove} from 'firebase/database';
 import {userType} from '../server/auth.js'
+import app from '../server/index.js';
+import {getAuth} from 'firebase/auth';
+import { FirebaseError } from "firebase/app";
 
 const db = getDatabase(app);
 const auth = getAuth();
@@ -24,16 +27,20 @@ export async function deliveryTime(country){//returns amount of days it will tak
     var month = today.getMonth();
     var day = today.getDate();
     if (day+deliverytime<monthDays(month)){
-        return Date(year, month, day+deliverytime, 3, 0, 0, 0); //3 pm delivery 
+        today.setDate(day+deliverytime);
+        return today;
     }
     else{
         var newday = day+deliverytime%monthDays(month);
+        today.setDate(newday)
         month++;
         if (month>11){
             month=0;
             year++;
         }
-        return Date(year, month, newday, 3, 0, 0, 0);
+        today.setMonth(month);
+        today.setFullYear(year);
+        return today;
     }
 }
 
@@ -49,10 +56,10 @@ function monthDays(month){//returrns days in the month
     }
 }
 
-export async function confirmOrder(){
+export async function confirmOrder(country, city, address){
     var currentdate = new Date();
-    var country = document.getElementById("country");
-    var deliverydate = deliveryTime(country);
+    var address = city + ", " + address;
+    var deliverydate = await deliveryTime(country);
     var cart = await getCart();
     var usertype = await userType();
     if (usertype!=null){
@@ -68,7 +75,7 @@ export async function confirmOrder(){
         await get(ref(db, collection + uid)).then((snapshot)=>{
             orders = snapshot.val().Orders;
         })
-        var orders = currentdate+"~"+cart+"~"+deliverydatedate;
+        var addon = currentdate+"~"+cart+"~"+deliverydate+"~"+address;
         if (orders==null || orders==""){
             update(ref(db, collection + uid),{
                 Orders: addon
@@ -76,11 +83,11 @@ export async function confirmOrder(){
         }
         else{
             update(ref(db, collection + uid),{
-                Orders: cart+"+ "+addon
+                Orders: orders+"+ "+addon
             })
         }
         update(ref(db, collection + uid),{//empty out the cart
-            Cart: deleteField(),
+            Cart: "",
         })
         alert("Order Confirmed");
 
@@ -102,11 +109,11 @@ async function getOrders(){
         else{
             collection = "Admins/";
         }
-        var cart;
+        var orders;
         await get(ref(db, collection + uid)).then((snapshot)=>{
             orders = snapshot.val().Orders;
         })
-        if (cart==null){
+        if (orders==null){
             return null;
         }
         else{
@@ -136,7 +143,7 @@ export async function getOrdersList() {
                     const item = {quantity: splitup[0], name: splitup[1], price: splitup[2], link: splitup[3], spot: i};
                     items.push(item);            
                 }
-                const order = {orderdate: split[0], items: items, deliverydate: split[2], spot: i};
+                const order = {orderdate: split[0], items: items, deliverydate: split[2], address: split[3], spot: i};
                 orders.push(order)
                 
             }
