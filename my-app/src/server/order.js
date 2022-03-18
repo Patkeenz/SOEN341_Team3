@@ -132,15 +132,15 @@ export async function getOrdersList() {
             return null;
         }
         else{
-            const orders = [];
+            var orders = [];
             var itemsanddates = allorders.split("+ ");
             for(var i=0; i<itemsanddates.length; i++){
                 var split = itemsanddates[i].split("~"); //split items and dates into order date, products in the order, and delivery date
                 var allitems = split[1].split(", ");
                 var items = [];
-                for(var i=0; i<allitems.length; i++){
-                    var splitup = allitems[i].split("|");
-                    const item = {quantity: splitup[0], name: splitup[1], price: splitup[2], link: splitup[3], spot: i};
+                for(var j=0; j<allitems.length; j++){
+                    var splitup = allitems[j].split("|");
+                    const item = {quantity: splitup[0], name: splitup[1], price: splitup[2], link: splitup[3], spot: j};
                     items.push(item);            
                 }
                 const order = {orderdate: split[0], items: items, deliverydate: split[2], address: split[3], spot: i};

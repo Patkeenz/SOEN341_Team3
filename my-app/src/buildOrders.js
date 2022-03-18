@@ -12,6 +12,22 @@ export async function buildOrders(loaded) {
         var orders = loaded;
     }
     
+    
+
+    // var today = new Date();
+    // for(var i=0; i<orders.length; i++){
+    //     var currentorder = orders[i]; 
+    //     var items = currentorder.items; 
+    //     if(currentorder.deliverydate.getDate()<today.getDate()){
+    //         var delivered = true;
+    //     }
+    //     for(var j = 0; j<items.length; j++){
+    //          alert("order number " + (i+1));
+    //          alert(items[j].name)
+    //     }
+    
+    // }
+
     // temporary
     var orders = ["order1", "order2", "order3"];
     
