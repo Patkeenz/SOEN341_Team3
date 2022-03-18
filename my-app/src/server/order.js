@@ -137,7 +137,7 @@ export async function getOrdersList() {
             for(var i=0; i<itemsanddates.length; i++){
                 var split = itemsanddates[i].split("~"); //split items and dates into order date, products in the order, and delivery date
                 var allitems = split[1].split(", ");
-                var items;
+                var items = [];
                 for(var i=0; i<allitems.length; i++){
                     var splitup = allitems[i].split("|");
                     const item = {quantity: splitup[0], name: splitup[1], price: splitup[2], link: splitup[3], spot: i};
@@ -145,7 +145,6 @@ export async function getOrdersList() {
                 }
                 const order = {orderdate: split[0], items: items, deliverydate: split[2], address: split[3], spot: i};
                 orders.push(order)
-                
             }
             return orders;
         }
