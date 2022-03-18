@@ -11,13 +11,11 @@ export async function buildOrders(loaded) {
     else{
         var orders = loaded;
     }
-    
-    
+
 
     // var today = new Date();
     // for(var i=0; i<orders.length; i++){
-    //     var currentorder = orders[i]; 
-    //     var items = currentorder.items; 
+    //     
     //     if(currentorder.deliverydate.getDate()<today.getDate()){
     //         var delivered = true;
     //     }
@@ -25,11 +23,7 @@ export async function buildOrders(loaded) {
     //          alert("order number " + (i+1));
     //          alert(items[j].name)
     //     }
-    
     // }
-
-    // temporary
-    var orders = ["order1", "order2", "order3"];
     
     // empty the page
     let maindiv = document.getElementById("usercart");
@@ -38,49 +32,93 @@ export async function buildOrders(loaded) {
     // create a table for each order
     for(let i = 0; i < orders.length; i++)
     {
+        var currentorder = orders[i]; 
+        var items = currentorder.items; 
+
+        // find the price of the order
+        var totalPrice = 0;
+        for(var k = 0; k < items.length; k++)
+        {
+            totalPrice = totalPrice + items[k].price;
+        }
+
         // add the date and total of the order
+        let tableDiv = document.createElement("div");
+        tableDiv.setAttribute("class", "tableDiv");
         let table = document.createElement("table");
         table.className = "redBorderedLabelBorder";
         let infoRow = document.createElement("tr");
-        infoRow.className = "redBorderedLabelBorder";
         let dateColumn = document.createElement("td");
         let dateString = document.createElement("p");
-        dateString.innerHTML = "October 26";
+        dateString.setAttribute("class", "orderPageProductName");
+        dateString.innerHTML = (currentorder.deliverydate).slice(0, 15);
+
+        var deliveredCol;
+        var deliveredCheck;
+        var delivered;
+        if(currentorder.deliverydate > new Date())
+        {
+            deliveredCol = document.createElement("td")
+            deliveredCheck = document.createElement("p");
+            delivered = true;
+            deliveredCheck.innerHTML = "Delivered";
+            deliveredCheck.setAttribute("class", "deliveredIcon");
+        }
+
         let totalCostColumn = document.createElement("td");
+        totalCostColumn.setAttribute("colspan", "4");
         let priceString = document.createElement("p");
-        priceString.innerHTML = "$549.99";
+        priceString.setAttribute("class", "orderPageProductName");
+        priceString.innerHTML = "Total cost: $" + parseFloat(totalPrice).toFixed(2);
+        let deleteButtonColumn = document.createElement("td");
+        let deleteButton = document.createElement("button");
+        deleteButton.setAttribute("type", "button");
+        deleteButton.innerHTML = "Delete Order";
+        deleteButton.setAttribute("class", "deleteOrderButton");
 
         // append
-        maindiv.append(table);
+        maindiv.append(tableDiv);
+        tableDiv.append(table);
         table.append(infoRow);
         infoRow.append(dateColumn);
         dateColumn.append(dateString);
+        if(delivered)
+        {   
+            infoRow.append(deliveredCol);
+            deliveredCol.append(deliveredCheck);
+        }
         infoRow.append(totalCostColumn);
         totalCostColumn.append(priceString);
-
-        var items = ["item1", "item2", "item3"];
+        infoRow.append(deleteButtonColumn);
+        deleteButtonColumn.append(deleteButton);
 
         // add all the items in the order 
         for(var j = 0; j < items.length; j++)
         {
             let itemRow = document.createElement("tr");
-            itemRow.className = "redBorderedLabelBorder";
+            itemRow.className = "redRowBorder";
             let imageColumn = document.createElement("td");
             let image = document.createElement("img");
+            image.setAttribute("src", items[j].link);
+            image.setAttribute("class", "orderListImage");
             let itemNameColumn = document.createElement("td");
+            itemNameColumn.setAttribute("colspan", "2");
             let itemName = document.createElement("p");
-            itemName.innerHTML = "desk";
+            itemName.setAttribute("class", "orderPageProductName");
+            itemName.innerHTML = items[j].name;
             let itemCostColumn = document.createElement("td");
             let itemCostString = document.createElement("p");
-            itemCostString.innerHTML = "$5.89";
+            itemCostString.setAttribute("class", "orderPageProductName");
+            itemCostString.innerHTML = "$" + items[j].price;
 
             // append the imagetable.append(infoRow);
             table.append(itemRow);
             itemRow.append(imageColumn);
+            imageColumn.append(image);
             itemRow.append(itemNameColumn);
             itemNameColumn.append(itemName);
             itemRow.append(itemCostColumn);
-            itemCostColumn.append(priceString);
+            itemCostColumn.append(itemCostString);
         }
     }
 
