@@ -89,11 +89,11 @@ export async function buildCheckout(loaded) {
 
         let taxheader = document.createElement("p");
         taxheader.className = "right";
-        taxheader.innerHTML = "Tax (15%): " + subtotal*0.15 + "$";
+        taxheader.innerHTML = "Tax (15%): " + (subtotal*0.15).toFixed(2) + "$";
 
         let totalheader = document.createElement("h5");
         totalheader.className = "right";
-        totalheader.innerHTML = "Total: " + subtotal*1.15+shipping + "$";
+        totalheader.innerHTML = "Total: " + (subtotal*1.15+shipping).toFixed(2) + "$";
 
         let payButton = document.createElement("button");
         payButton.innerHTML = "Choose a Payment Method";
