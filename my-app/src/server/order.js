@@ -75,7 +75,7 @@ export async function confirmOrder(country, city, address){
         await get(ref(db, collection + uid)).then((snapshot)=>{
             orders = snapshot.val().Orders;
         })
-        var addon = currentdate+"~"+cart+"~"+deliverydate+"~"+address;
+        var addon = currentdate+"~"+cart+"~"+deliverydate+"~"+address+"~"+"Processing Order";
         if (orders==null || orders==""){
             update(ref(db, collection + uid),{
                 Orders: addon
@@ -143,7 +143,7 @@ export async function getOrdersList() {
                     const item = {quantity: splitup[0], name: splitup[1], price: splitup[2], link: splitup[3], spot: j};
                     items.push(item);            
                 }
-                const order = {orderdate: split[0], items: items, deliverydate: split[2], address: split[3], spot: i};
+                const order = {orderdate: split[0], items: items, deliverydate: split[2], address: split[3], status: split[4], spot: i};
                 orders.push(order)
             }
             return orders;
@@ -173,4 +173,56 @@ export async function removeOrder(spot){
         update(ref(db, collection + uid),{
             Orders: updatedorders
         })
+}
+
+export async function updateStatus(username, spot, status){
+    var userid;
+    var orders;
+    const collectionRef = ref(db,"Users/"); 
+    const collectionsnap = await get((collectionRef));
+    collectionsnap.forEach(doc=>{
+        var currentusername = doc.val().Username;
+        if(currentusername == username){
+            userid = doc.key;
+            orders=doc.val().Orders;
+        }
+    });
+    if(spot>=0){
+        var allorders = orders.split("+ ");
+        var updatedorders="";
+        for(var i=0; i<allorders.length; i++){
+            if(i!=spot) {//do not add the product in the spot back
+                if(i==0){
+                    updatedorders+=allorders[i];
+                }
+                else{
+                    updatedorders+="+ "+allorders[i];
+                }
+            }
+            else{
+                var ordersplit = allorders[i].split("~");
+                ordersplit[4] = status;
+                var rebuiltorder="";
+                for(var j=0; j<ordersplit.length; j++){
+                    if(j!=ordersplit.length-1){
+                        rebuiltorder+=ordersplit[j];
+                        rebuiltorder+="~";
+                    }
+                    else{
+                        rebuiltorder+=ordersplit[j];
+                    }
+                }
+                if(i==0){
+                    updatedorders+=rebuiltorder;
+                }
+                else{
+                    updatedorders+="+ "+rebuiltorder;
+                }
+            }
+        }
+    }
+    update(ref(db, collection + uid),{
+        Orders: updatedorders
+    })
+
 }

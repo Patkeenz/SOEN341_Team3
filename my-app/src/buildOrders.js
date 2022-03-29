@@ -1,5 +1,5 @@
 import { buildCheckout } from "./buildCheckout.js";
-import {getOrdersList} from "./server/order.js"
+import {getOrdersList, removeOrder} from "./server/order.js"
 import ReactDOM, { render } from 'react-dom';
 import { FaCreditCard, FaTrash, FaPenSquare } from 'react-icons/fa'
 
@@ -75,6 +75,9 @@ export async function buildOrders(loaded) {
         deleteButton.setAttribute("type", "button");
         deleteButton.innerHTML = "Delete Order";
         deleteButton.setAttribute("class", "deleteOrderButton");
+        deleteButton.onclick = async function(){
+            await removeOrder(i);
+        }
 
         // append
         maindiv.append(tableDiv);
