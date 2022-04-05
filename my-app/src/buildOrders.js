@@ -39,7 +39,7 @@ export async function buildOrders(loaded) {
         var totalPrice = 0;
         for(var k = 0; k < items.length; k++)
         {
-            totalPrice = totalPrice + items[k].price;
+            totalPrice += items[k].price;
         }
 
         // add the date and total of the order
@@ -51,12 +51,14 @@ export async function buildOrders(loaded) {
         let dateColumn = document.createElement("td");
         let dateString = document.createElement("p");
         dateString.setAttribute("class", "orderPageProductName");
-        dateString.innerHTML = (currentorder.deliverydate).slice(0, 15);
+        dateString.innerHTML = "Estimated delivery: " + (currentorder.deliverydate).slice(0, 15);
 
         var deliveredCol;
         var deliveredCheck;
-        var delivered;
-        if(currentorder.deliverydate > new Date())
+        var delivered = false;
+        var curDate = new Date();
+        var shipDate = new Date(currentorder.deliverydate.substring(4, 15));
+        if(curDate >= shipDate)
         {
             deliveredCol = document.createElement("td")
             deliveredCheck = document.createElement("p");
