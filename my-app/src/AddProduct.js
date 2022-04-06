@@ -45,7 +45,7 @@ const AddProduct = () => {
               <br/>
             </div>
             <div className=" pb-2">
-              <label className="font-bold pl-5" for="priceText">Product Price*</label>
+              <label className="font-bold pl-5" for="priceText">Product Price* (Note when adding a product, TechTonic will receive 10% of the earnings of each sale.))</label>
               <br/>
               <input id="price" className="w-11/12 pl-4 pr-6 py-2 font-bold placeholder-gray-400 rounded-full focus:outline-none" type="text" name="price" placeholder="Product Price" required/>
               <br/>
