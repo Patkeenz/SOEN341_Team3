@@ -1,6 +1,8 @@
 import { Card } from "react-bootstrap";
 import { confirmOrder, deliveryTime } from "./server/order.js";
 import {getItems, removeItem, updateQuantity} from "./server/cart.js"
+import { FaCreditCard, FaCcPaypal, FaCcVisa, FaCcMastercard } from 'react-icons/fa'
+import ReactDOM, { render } from 'react-dom';
 
 
 export async function buildCheckout(loaded) {
@@ -22,21 +24,22 @@ export async function buildCheckout(loaded) {
             if(products[i].name!=null){
             var product = products[i];
             let row = document.createElement("tr");
+            row.className = "border-t border-b border-red-300";
             let imgCol = document.createElement("th");
             imgCol.className = "imgCol";
             let pic = document.createElement("img");
             pic.setAttribute("src", products[i].link);
-            pic.className = "productImage";
+            pic.className = "p-1 w-11/12 bg-white border rounded max-w-sm justify-self-center bg-opacity-25"; //productImage px-10 pt-10
             let infoCol = document.createElement("th");
-            let prodName = document.createElement("h1");
+            let prodName = document.createElement("p");
             prodName.innerHTML = product.name;
             prodName.className = "slightlyMarginedItem";
             let lineBreak = document.createElement("br");
             let prodQuant = document.createElement("p");
             prodQuant.innerHTML = product.quantity;
             let priceCol = document.createElement("th");
-            let prodPrice = document.createElement("h3");
-            prodPrice.innerHTML = product.price+ " x " +product.quantity + " = " + product.price*product.quantity + "$";
+            let prodPrice = document.createElement("p");
+            prodPrice.innerHTML = product.price+ " x " +product.quantity + " = " + (product.price*product.quantity).toFixed(2) + "$";
             prices.push(product.price*product.quantity);
             subtotal += parseFloat(product.price*product.quantity);
             let editCol = document.createElement("th");
@@ -70,11 +73,11 @@ export async function buildCheckout(loaded) {
                 let priceheader = document.createElement("p")
                 priceheader.className = "right";
                 if(i<prices.length-1){
-                     priceheader.innerHTML = prices[i] + "$";
+                     priceheader.innerHTML = prices[i].toFixed(2) + "$";
                 }
                 else{
                     let utag = document.createElement("u");
-                    utag.innerHTML = "+ " + prices[i];
+                    utag.innerHTML = "+ " + prices[i].toFixed(2);
                     priceheader.appendChild(utag)
                 }
             maindiv.append(priceheader);
@@ -82,7 +85,7 @@ export async function buildCheckout(loaded) {
 
         let subtotalheader = document.createElement("p");
         subtotalheader.className = "right";
-        subtotalheader.innerHTML = "Subtotal: " + subtotal + "$";
+        subtotalheader.innerHTML = "Subtotal: " + subtotal.toFixed(2) + "$";
         maindiv.append(subtotalheader);
 
         maindiv.append(shippingheader);
@@ -95,15 +98,25 @@ export async function buildCheckout(loaded) {
         totalheader.className = "right";
         totalheader.innerHTML = "Total: " + (subtotal*1.15+shipping).toFixed(2) + "$";
 
+        let payIcon = document.createElement("div");
         let payButton = document.createElement("button");
         payButton.innerHTML = "Choose a Payment Method";
-        payButton.className= "button6";
+        payButton.className= "inline-block justify-self-center px-2 py-1.5 bg-green-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-green-700 hover:cursor-pointer";
         payButton.onclick = function(){
             paymentBuilder();
         }
+        payIcon.className = "grid mb-2";
+        let iconContainer = document.createElement("div");
+        iconContainer.className = "flex justify-self-center"
+        const icons = [<FaCcMastercard className=" mx-2" size={42}/>, 
+                        <FaCcVisa className=" mx-2" size={42}/>,
+                        <FaCcPaypal className=" mx-2" size={42}/>];
         maindiv.append(taxheader);
         maindiv.append(totalheader);
-        maindiv.append(payButton);
+        ReactDOM.render(icons, iconContainer)
+        payIcon.appendChild(iconContainer)
+        payIcon.appendChild(payButton)
+        maindiv.append(payIcon);
 
     return products
   }
