@@ -22,6 +22,13 @@ Zain Mushtaq - 40177427 - StupendousTurtle
 
 Melisa Panaccione - 40182167 - Melisa1026
 
+## Coding Style
+
+- Method names lowercase for the first word and then uppercase for the second word Example: addProduct()
+- For the file names a capital letter is used for the main pages and a lowercase letter is used for the files that contains extra functions, Example: Cart.js (Main File) & cart.js (Extra Functions)
+- The team uses indentations to keep blocks of the code together
+
+
 ## Techniques
 
 Front-End:
