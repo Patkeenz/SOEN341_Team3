@@ -14,8 +14,6 @@ test('checks if add products function works', () => {
   uploadProduct("test1", 100, "This is a test","cat","picture");
   const docRef = ref(db,"Products/"+ "test1");
   const docsnap = await get((docRef));
-
-    
     if(docsnap.exist()){
         price = docsnap.val().Price;
         result = 1;
