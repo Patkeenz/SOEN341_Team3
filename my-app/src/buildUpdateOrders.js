@@ -82,18 +82,18 @@ export async function buildUpdateOrders(loaded) {
         let priceString = document.createElement("p");
         priceString.setAttribute("class", "orderPageProductName");
         priceString.innerHTML = "Total cost: $" + parseFloat(totalPrice).toFixed(2);
-        let processButtonColumn = document.createElement("td");
-        let processButton = document.createElement("button");
-        processButton.setAttribute("type", "button");
-        processButton.innerHTML = "Set to Processed";
-        processButton.setAttribute("class", "updateProcessingButton");
+        // let deliveredButtonColumn = document.createElement("td");
+        // let deliveredButton = document.createElement("button");
+        // deliveredButton.setAttribute("type", "button");
+        // deliveredButton.innerHTML = "Set to Delivered";
+        // deliveredButton.setAttribute("class", "updateDeliveredButton");
         let shipButtonColumn = document.createElement("td");
         let shipButton = document.createElement("button");
         shipButton.setAttribute("type", "button");
         shipButton.innerHTML = "Set to Shipped";
         shipButton.setAttribute("class", "updateShippingButton");
         // processButton.onclick = async function(){
-        //     await updateStatus(currentorder.username, currentorder.spot, "Shipped")
+        //     await updateStatus(currentorder.username, currentorder.spot, "Delivered")
         // }
         // shipButton.onclick = async function(){
         //     await updateStatus(currentorder.username, currentorder.spot, "Shipped")

@@ -133,16 +133,16 @@
   border-right: 3px solid #1a64e5;
 }
 
-.updateProcessingButton
+.updateDeliveredButton
 {
   width: 130px;
   height: 40px;
-  background-color: #4d505c;
+  background-color: #288f2f;
   color: white;
   border-radius: 8px;
   float: right;
-  border-bottom: 3px solid #6a6682;
-  border-right: 3px solid #4f545c;
+  border-bottom: 3px solid #0c543e;
+  border-right: 3px solid #0e9154;
 }
 
 .deliveredIcon
