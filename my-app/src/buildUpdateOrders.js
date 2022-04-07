@@ -2,6 +2,7 @@ import { buildCheckout } from "./buildCheckout.js";
 import {getAllOrdersList, updateStatus} from "./server/order.js"
 import ReactDOM, { render } from 'react-dom';
 import { FaCreditCard, FaTrash, FaPenSquare } from 'react-icons/fa'
+import { off } from "firebase/database";
 
 
 export async function buildUpdateOrders(loaded) {
@@ -51,32 +52,35 @@ export async function buildUpdateOrders(loaded) {
         let nameColumn = document.createElement("td");
         let nameString = document.createElement("p");
         nameString.setAttribute("class", "orderPageProductName");
+        nameString.id = currentorder.username + " "+ currentorder.spot;
         nameString.innerHTML = "User: " + currentorder.username;
         let dateColumn = document.createElement("td");
         let dateString = document.createElement("p");
         dateString.setAttribute("class", "orderPageProductName");
         dateString.innerHTML = "Estimated delivery: " + (currentorder.deliverydate).slice(0, 15);
-
         var deliveredCol;
         var deliveredCheck;
         var delivered = false;
         var curDate = new Date();
         var shipDate = new Date(currentorder.deliverydate.substring(4, 15));
-        if(curDate >= shipDate)
-        {
-            deliveredCol = document.createElement("td")
-            deliveredCheck = document.createElement("p");
-            delivered = true;
-            deliveredCheck.innerHTML = "Delivered";
-            deliveredCheck.setAttribute("class", "deliveredIcon");
-        }
-
         //Processing tag
         var processingCol = document.createElement("td")
         var processingCheck = document.createElement("p");
-        processingCheck.innerHTML = "Processing";
+        if(currentorder.status == "Processing Order"){
+            processingCheck.innerHTML = "Processing";
         processingCheck.setAttribute("class", "processingIcon");
-
+        }
+        else if(currentorder.status== "Delivered"){
+            processingCheck.innerHTML = orders[i].status;
+        processingCheck.setAttribute("class", "deliveredIcon");
+        }
+        else if(currentorder.status=="Shipped"){ 
+            processingCheck.innerHTML = orders[i].status;
+        processingCheck.setAttribute("class", "shippedIcon");
+        }
+        else{
+            alert("Order error");
+        }
         let totalCostColumn = document.createElement("td");
         totalCostColumn.setAttribute("colspan", "4");
         let priceString = document.createElement("p");
@@ -95,9 +99,9 @@ export async function buildUpdateOrders(loaded) {
         // processButton.onclick = async function(){
         //     await updateStatus(currentorder.username, currentorder.spot, "Delivered")
         // }
-        // shipButton.onclick = async function(){
-        //     await updateStatus(currentorder.username, currentorder.spot, "Shipped")
-        // }
+        shipButton.onclick = async function(){
+             await updateStatus(nameString.innerHTML.substring(6,nameString.length), nameString.id.split(" ")[1], "Shipped")
+        }
 
         // append
         maindiv.append(tableDiv);

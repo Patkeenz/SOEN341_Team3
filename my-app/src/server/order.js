@@ -199,7 +199,7 @@ var allorders = await getAllOrders();
                 const item = {quantity: splitup[0], name: splitup[1], price: splitup[2], link: splitup[3], spot: j};
                 items.push(item);            
             }
-            const order = {orderdate: split[0], items: items, deliverydate: split[2], address: split[3], username: userinfo.username, spot: i};
+            const order = {orderdate: split[0], items: items, deliverydate: split[2], address: split[3], status: split[4], username: userinfo.username, spot: i};
             orders.push(order)
         }
         }
@@ -281,7 +281,7 @@ export async function updateStatus(username, spot, status){
             }
         }
     }
-    update(ref(db, collection + uid),{
+    update(ref(db, "Users/" + userid),{
         Orders: updatedorders
     })
 
