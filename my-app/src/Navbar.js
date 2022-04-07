@@ -61,6 +61,7 @@ const Navbar = () => {
         <Bootstrap.Navbar.Collapse id="basic-navbar-nav">
           <Bootstrap.Nav className="ms-auto">
             {isAdmin && <Bootstrap.Nav.Link as={Link} to="/addproduct">Add product</Bootstrap.Nav.Link>}
+            {isAdmin && <Bootstrap.Nav.Link as={Link} to="/updateorders">Orders</Bootstrap.Nav.Link>}
             <Bootstrap.Navbar.Brand as={Link} to="/cart">
           <img
           src={blackandred_cart}
