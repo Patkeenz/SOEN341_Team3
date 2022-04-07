@@ -1,13 +1,13 @@
-import handleUpload from './server/addproduct.js';
-import { useState } from "react";
-import { useAuth } from './server/authContext.js';
+import {uploadProduct, handleUpload} from './server/addproduct.js';
+//import { useState } from "react";
+//import { useAuth } from './server/authContext.js';
 import {getDatabase, get, ref, remove} from 'firebase/database';
 import app from '../server/index.js';
 
 const db = getDatabase(app);
 
 
-test('checks if add products function works', () => {
+test('checks if add products function works', async () => {
   var result;
   var price;
 
