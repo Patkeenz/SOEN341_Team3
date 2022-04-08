@@ -1,7 +1,5 @@
-import { buildCheckout } from "./buildCheckout.js";
 import {getOrdersList, removeOrder} from "./server/order.js"
-import ReactDOM, { render } from 'react-dom';
-import { FaCreditCard, FaTrash, FaPenSquare } from 'react-icons/fa'
+
 
 
 export async function buildOrders(loaded) {

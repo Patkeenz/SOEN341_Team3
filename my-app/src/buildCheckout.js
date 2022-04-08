@@ -1,7 +1,6 @@
-import { Card } from "react-bootstrap";
 import { confirmOrder, deliveryTime } from "./server/order.js";
 import {getItems, removeItem, updateQuantity} from "./server/cart.js"
-import { FaCreditCard, FaCcPaypal, FaCcVisa, FaCcMastercard } from 'react-icons/fa'
+import { FaCcPaypal, FaCcVisa, FaCcMastercard } from 'react-icons/fa'
 import ReactDOM, { render } from 'react-dom';
 
 
