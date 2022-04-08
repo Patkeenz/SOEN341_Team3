@@ -385,22 +385,22 @@ export async function buildCheckout(loaded) {
     var validLast = true;
     var validCity = true;
     var validCountry = true;
-    if(!/^[a-zA-Z\s]+$/.test(first))
+    if(validString(first))
     {
         formRequirementsMet = false;
         validFirst = false;
     }
-    if(!/^[a-zA-Z\s]+$/.test(last))
+    if(validString(last))
     {
         formRequirementsMet = false;
         validLast = false;
     }
-    if(!/^[a-zA-Z\s]+$/.test(city))
+    if(validString(city))
     {
         formRequirementsMet = false;
         validCity = false;
     }
-    if(!/^[a-zA-Z\s]+$/.test(country))
+    if(validString(country))
     {
         formRequirementsMet = false;
         validCountry = false;
@@ -501,6 +501,18 @@ export async function buildCheckout(loaded) {
             }
         }
         if(validCard == false)
+        {
+            return false;
+        }
+    }
+
+    export function validString(str)
+    {
+        if(!/^[a-zA-Z\s]+$/.test(str))
+        {
+            return true;
+        }
+        else
         {
             return false;
         }
