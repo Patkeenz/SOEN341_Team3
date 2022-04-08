@@ -39,8 +39,10 @@ export async function buildOrders(loaded) {
         var totalPrice = 0;
         for(var k = 0; k < items.length; k++)
         {
-            totalPrice += items[k].price;
+            totalPrice += parseFloat(items[k].price);
+            console.log(items[k].price)
         }
+        console.log(totalPrice)
 
         // add the date and total of the order
         let tableDiv = document.createElement("div");
