@@ -86,21 +86,23 @@ export async function buildUpdateOrders(loaded) {
         let priceString = document.createElement("p");
         priceString.setAttribute("class", "orderPageProductName");
         priceString.innerHTML = "Total cost: $" + parseFloat(totalPrice).toFixed(2);
-        // let deliveredButtonColumn = document.createElement("td");
-        // let deliveredButton = document.createElement("button");
-        // deliveredButton.setAttribute("type", "button");
-        // deliveredButton.innerHTML = "Set to Delivered";
-        // deliveredButton.setAttribute("class", "updateDeliveredButton");
+        let deliveredButtonColumn = document.createElement("td");
+        let deliveredButton = document.createElement("button");
+        deliveredButton.setAttribute("type", "button");
+        deliveredButton.innerHTML = "Set to Delivered";
+        deliveredButton.setAttribute("class", "updateDeliveredButton");
         let shipButtonColumn = document.createElement("td");
         let shipButton = document.createElement("button");
         shipButton.setAttribute("type", "button");
         shipButton.innerHTML = "Set to Shipped";
         shipButton.setAttribute("class", "updateShippingButton");
-        // processButton.onclick = async function(){
-        //     await updateStatus(currentorder.username, currentorder.spot, "Delivered")
-        // }
+        deliveredButton.onclick = async function(){
+            await updateStatus(nameString.innerHTML.substring(6,nameString.length), nameString.id.split(" ")[1], "Delivered")
+            alert("Changed status successfully")
+        }
         shipButton.onclick = async function(){
              await updateStatus(nameString.innerHTML.substring(6,nameString.length), nameString.id.split(" ")[1], "Shipped")
+             alert("Changed status successfully")
         }
 
         // append
@@ -119,11 +121,23 @@ export async function buildUpdateOrders(loaded) {
         }
         //infoRow.append(totalCostColumn);
         //totalCostColumn.append(priceString);
-        if(!delivered){
+        if(currentorder.status == "Processing Order"){
             infoRow.append(processingCol);
             processingCol.append(processingCheck);
             infoRow.append(shipButtonColumn);
             shipButtonColumn.append(shipButton); 
+        }
+
+        if(currentorder.status == "Shipped"){
+            infoRow.append(processingCol);
+            processingCol.append(processingCheck);
+            infoRow.append(deliveredButtonColumn);
+            deliveredButtonColumn.append(deliveredButton); 
+        }
+
+        if(currentorder.status == "Delivered"){
+            infoRow.append(processingCol);
+            processingCol.append(processingCheck);
         }
         
 

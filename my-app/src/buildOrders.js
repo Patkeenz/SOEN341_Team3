@@ -53,6 +53,21 @@ export async function buildOrders(loaded) {
         dateString.setAttribute("class", "orderPageProductName");
         dateString.innerHTML = "Estimated delivery: " + (currentorder.deliverydate).slice(0, 15);
 
+        var statusCol = document.createElement("td")
+        var statusCheck = document.createElement("p");
+        if(currentorder.status == "Processing Order"){
+            statusCheck.innerHTML = "Processing";
+            statusCheck.setAttribute("class", "processingIcon");
+        }
+        else if(currentorder.status== "Delivered"){
+            statusCheck.innerHTML = orders[i].status;
+            statusCheck.setAttribute("class", "deliveredIcon");
+        }
+        else if(currentorder.status=="Shipped"){ 
+            statusCheck.innerHTML = orders[i].status;
+            statusCheck.setAttribute("class", "shippedIcon");
+        }
+
         var deliveredCol;
         var deliveredCheck;
         var delivered = false;
@@ -87,15 +102,20 @@ export async function buildOrders(loaded) {
         table.append(infoRow);
         infoRow.append(dateColumn);
         dateColumn.append(dateString);
-        if(delivered)
-        {   
-            infoRow.append(deliveredCol);
-            deliveredCol.append(deliveredCheck);
-        }
+        // if(delivered)
+        // {   
+        //     infoRow.append(deliveredCol);
+        //     deliveredCol.append(deliveredCheck);
+        // }
+        infoRow.append(statusCol);
+        statusCol.append(statusCheck);
         infoRow.append(totalCostColumn);
         totalCostColumn.append(priceString);
-        infoRow.append(deleteButtonColumn);
-        deleteButtonColumn.append(deleteButton);
+        if(currentorder.status !== "Delivered"){
+            infoRow.append(deleteButtonColumn);
+            deleteButtonColumn.append(deleteButton);
+        }
+        
 
         // add all the items in the order 
         for(var j = 0; j < items.length; j++)
