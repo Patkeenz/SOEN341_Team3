@@ -8,7 +8,6 @@ const db = getDatabase(app);
 
 
 test('checks if add products function works', async () => {
-  var result;
   var price;
 
   uploadProduct("test1", 100, "This is a test","cat","picture");
@@ -16,7 +15,6 @@ test('checks if add products function works', async () => {
   const docsnap = await get((docRef));
     if(docsnap.exist()){
         price = docsnap.val().Price;
-        result = 1;
     }
     assert.equal(price, 100);
     docsnap.remove();
