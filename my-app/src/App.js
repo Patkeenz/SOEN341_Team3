@@ -11,6 +11,7 @@ import Orders from './Orders'
 import AddProduct from './AddProduct'
 import AboutUs from './AboutUs'
 import UpdateOrders from './UpdateOrders';
+import ForgotPassword from './ForgotPassword';
 // import Product from './Product'
 import * as Bootstrap from 'react-bootstrap'
 //import { getAuth } from 'firebase/auth'
@@ -56,6 +57,9 @@ function App() {
           </Route>
           <Route path="/updateorders">
             <UpdateOrders/>
+          </Route>
+          <Route path="/forgotpassword">
+            <ForgotPassword/>
           </Route>
         </Switch>
       </div>

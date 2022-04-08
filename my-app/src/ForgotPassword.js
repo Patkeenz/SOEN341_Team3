@@ -6,48 +6,41 @@ import './addProduct.css';
 import { UserContext } from './App'
 import { useAuth } from './server/authContext.js';
 
-const Login = () => {
+const ForgotPassword = () => {
 
-    const { login } = useAuth();
-    const {state, dispatch} = useContext(UserContext);
+    const { resetPassword } = useAuth();
 
-    const userRef = useRef();
-    const passwordRef = useRef();
+    const emailRef = useRef();
     const [error, setError] = useState("");
     const history = useHistory();
 
     async function handleSubmit() {
         try{
             setError("");
-            await login(userRef.current.value, passwordRef.current.value);
-            dispatch({type:"USER", payload:true})
-            history.push("/");
+            await resetPassword(emailRef.current.value);
+            alert("Check your inbox for further instructions");
         }
         catch{
-            setError("Incorrect User or password")
+            setError("Failed to reset password")
         }
     }
     return (
         <Container className="d-flex align-items-center justify-content-center " style={{ minHeight: "100vh"}}>
             <Card className=" d-flex w-100 border-3 border-red-400" border="danger" style= {{ maxWidth: "400px"}}>
                 <Card.Body>
-                    <h2 className="text-center mb-4">Log In</h2>
+                    <h2 className="text-center mb-4">Password Reset</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form>
                         <Form.Group id="email">
                             {/** <Form.Label>Username</Form.Label>*/}
-                            <Form.Control type="text" className='placeholder-grey-400' placeholder='Username' ref={userRef} required />
-                        </Form.Group>
-                        <br/>
-                        <Form.Group id="password">
-                            <Form.Control type="password" className='placeholder-grey-400' placeholder='Password' ref={passwordRef} required />
+                            <Form.Control type="email" className='placeholder-grey-400' placeholder='Email' ref={emailRef} required />
                         </Form.Group>
                         <br/>
                         <div className="relative py-3 grid">
-                            <button type="button" className="inline-block justify-self-center px-3 py-2.5 bg-red-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-red-700" onClick={handleSubmit}>Log In</button>
+                            <button type="button" className="inline-block justify-self-center px-3 py-2.5 bg-red-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-red-700" onClick={handleSubmit}>Reset Password</button>
                         </div>
                         <div className="w-100 text-center">
-                            <Link to="/forgotpassword">Forgot Password?</Link>
+                            <Link to="/login">Login</Link>
                         </div>
                     </Form>
                 </Card.Body>
@@ -59,4 +52,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default ForgotPassword;
