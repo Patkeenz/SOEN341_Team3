@@ -1,10 +1,13 @@
-import {getOrdersList, removeOrder} from "./server/order.js"
+import { buildCheckout } from "./buildCheckout.js";
+import {getAllOrdersList, updateStatus} from "./server/order.js"
+import ReactDOM, { render } from 'react-dom';
+import { FaCreditCard, FaTrash, FaPenSquare } from 'react-icons/fa'
+import { off } from "firebase/database";
 
 
-
-export async function buildOrders(loaded) {
+export async function buildUpdateOrders(loaded) {
     if(!loaded){
-        var orders = await getOrdersList();
+        var orders = await getAllOrdersList();
     }
     else{
         var orders = loaded;
@@ -37,7 +40,7 @@ export async function buildOrders(loaded) {
         var totalPrice = 0;
         for(var k = 0; k < items.length; k++)
         {
-            totalPrice += parseFloat(items[k].price);
+            totalPrice += items[k].price;
         }
 
         // add the date and total of the order
@@ -46,72 +49,95 @@ export async function buildOrders(loaded) {
         let table = document.createElement("table");
         table.className = "redBorderedLabelBorder";
         let infoRow = document.createElement("tr");
+        let nameColumn = document.createElement("td");
+        let nameString = document.createElement("p");
+        nameString.setAttribute("class", "orderPageProductName");
+        nameString.id = currentorder.username + " "+ currentorder.spot;
+        nameString.innerHTML = "User: " + currentorder.username;
         let dateColumn = document.createElement("td");
         let dateString = document.createElement("p");
         dateString.setAttribute("class", "orderPageProductName");
         dateString.innerHTML = "Estimated delivery: " + (currentorder.deliverydate).slice(0, 15);
-
-        var statusCol = document.createElement("td")
-        var statusCheck = document.createElement("p");
-        if(currentorder.status == "Processing Order"){
-            statusCheck.innerHTML = "Processing";
-            statusCheck.setAttribute("class", "processingIcon");
-        }
-        else if(currentorder.status== "Delivered"){
-            statusCheck.innerHTML = orders[i].status;
-            statusCheck.setAttribute("class", "deliveredIcon");
-        }
-        else if(currentorder.status=="Shipped"){ 
-            statusCheck.innerHTML = orders[i].status;
-            statusCheck.setAttribute("class", "shippedIcon");
-        }
-
         var deliveredCol;
         var deliveredCheck;
         var delivered = false;
         var curDate = new Date();
         var shipDate = new Date(currentorder.deliverydate.substring(4, 15));
-        if(curDate >= shipDate)
-        {
-            deliveredCol = document.createElement("td")
-            deliveredCheck = document.createElement("p");
-            delivered = true;
-            deliveredCheck.innerHTML = "Delivered";
-            deliveredCheck.setAttribute("class", "deliveredIcon");
+        //Processing tag
+        var processingCol = document.createElement("td")
+        var processingCheck = document.createElement("p");
+        if(currentorder.status == "Processing Order"){
+            processingCheck.innerHTML = "Processing";
+        processingCheck.setAttribute("class", "processingIcon");
         }
-
+        else if(currentorder.status== "Delivered"){
+            processingCheck.innerHTML = orders[i].status;
+        processingCheck.setAttribute("class", "deliveredIcon");
+        }
+        else if(currentorder.status=="Shipped"){ 
+            processingCheck.innerHTML = orders[i].status;
+        processingCheck.setAttribute("class", "shippedIcon");
+        }
+        else{
+            alert("Order error");
+        }
         let totalCostColumn = document.createElement("td");
         totalCostColumn.setAttribute("colspan", "4");
         let priceString = document.createElement("p");
         priceString.setAttribute("class", "orderPageProductName");
         priceString.innerHTML = "Total cost: $" + parseFloat(totalPrice).toFixed(2);
-        let deleteButtonColumn = document.createElement("td");
-        let deleteButton = document.createElement("button");
-        deleteButton.setAttribute("type", "button");
-        deleteButton.innerHTML = "Delete Order";
-        deleteButton.setAttribute("class", "deleteOrderButton");
-        deleteButton.onclick = async function(){
-            await removeOrder(i);
+        let deliveredButtonColumn = document.createElement("td");
+        let deliveredButton = document.createElement("button");
+        deliveredButton.setAttribute("type", "button");
+        deliveredButton.innerHTML = "Set to Delivered";
+        deliveredButton.setAttribute("class", "updateDeliveredButton");
+        let shipButtonColumn = document.createElement("td");
+        let shipButton = document.createElement("button");
+        shipButton.setAttribute("type", "button");
+        shipButton.innerHTML = "Set to Shipped";
+        shipButton.setAttribute("class", "updateShippingButton");
+        deliveredButton.onclick = async function(){
+            await updateStatus(nameString.innerHTML.substring(6,nameString.length), nameString.id.split(" ")[1], "Delivered")
+            alert("Changed status successfully")
+        }
+        shipButton.onclick = async function(){
+             await updateStatus(nameString.innerHTML.substring(6,nameString.length), nameString.id.split(" ")[1], "Shipped")
+             alert("Changed status successfully")
         }
 
         // append
         maindiv.append(tableDiv);
         tableDiv.append(table);
         table.append(infoRow);
+        infoRow.append(nameColumn);
+        nameColumn.append(nameString);
         infoRow.append(dateColumn);
         dateColumn.append(dateString);
-        // if(delivered)
-        // {   
-        //     infoRow.append(deliveredCol);
-        //     deliveredCol.append(deliveredCheck);
-        // }
-        infoRow.append(statusCol);
-        statusCol.append(statusCheck);
-        infoRow.append(totalCostColumn);
-        totalCostColumn.append(priceString);
-        if(currentorder.status !== "Delivered"){
-            infoRow.append(deleteButtonColumn);
-            deleteButtonColumn.append(deleteButton);
+        
+        if(delivered)
+        {   
+            infoRow.append(deliveredCol);
+            deliveredCol.append(deliveredCheck);
+        }
+        //infoRow.append(totalCostColumn);
+        //totalCostColumn.append(priceString);
+        if(currentorder.status == "Processing Order"){
+            infoRow.append(processingCol);
+            processingCol.append(processingCheck);
+            infoRow.append(shipButtonColumn);
+            shipButtonColumn.append(shipButton); 
+        }
+
+        if(currentorder.status == "Shipped"){
+            infoRow.append(processingCol);
+            processingCol.append(processingCheck);
+            infoRow.append(deliveredButtonColumn);
+            deliveredButtonColumn.append(deliveredButton); 
+        }
+
+        if(currentorder.status == "Delivered"){
+            infoRow.append(processingCol);
+            processingCol.append(processingCheck);
         }
         
 

@@ -146,8 +146,70 @@ export async function getOrdersList() {
                 const order = {orderdate: split[0], items: items, deliverydate: split[2], address: split[3], status: split[4], spot: i};
                 orders.push(order)
             }
+            orders.reverse();
             return orders;
         }
+}
+
+async function getAllOrders(){
+    var orders;
+    var orderItem = [];
+    collection = "Users/";
+    await get(ref(db, collection)).then((snapshot)=>{
+        snapshot.forEach(user => {
+            orders = user.val().Orders;
+            const userOrder = {orders: orders, username: user.val().Username}
+            orderItem.push(userOrder);
+        })
+        
+    })
+    if (orderItem==null){
+        return null;
+    }
+    else{
+        //console.log(orderItem)
+        return orderItem;
+    }
+
+}
+
+export async function getAllOrdersList() {
+var allorders = await getAllOrders();
+//console.log(allorders[0].orders);
+    if (allorders==null){
+        return null;
+    }
+    else{
+        var orders = [];
+        allorders.forEach(userinfo => {
+            if(userinfo.orders==null){
+                return null
+            }
+            //console.log(useritems.orders)
+        if(userinfo.orders !== undefined){
+        var itemsanddates = userinfo.orders.split("+ ");
+        //console.log(userinfo)
+        for(var i=0; i<itemsanddates.length; i++){
+            var split = itemsanddates[i].split("~"); //split items and dates into order date, products in the order, and delivery date
+            if(split[1] !== undefined){
+            var allitems = split[1].split(", ");
+            
+            var items = [];
+            for(var j=0; j<allitems.length; j++){
+                var splitup = allitems[j].split("|");
+                const item = {quantity: splitup[0], name: splitup[1], price: splitup[2], link: splitup[3], spot: j};
+                items.push(item);            
+            }
+            const order = {orderdate: split[0], items: items, deliverydate: split[2], address: split[3], status: split[4], username: userinfo.username, spot: i};
+            orders.push(order)
+        }
+        }
+    }
+    })
+    console.log(orders)
+    orders.reverse();
+        return orders;
+    }
 }
 
 export async function removeOrder(spot){
@@ -221,7 +283,7 @@ export async function updateStatus(username, spot, status){
             }
         }
     }
-    update(ref(db, collection + uid),{
+    update(ref(db, "Users/" + userid),{
         Orders: updatedorders
     })
 

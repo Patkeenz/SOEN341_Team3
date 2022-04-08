@@ -98,7 +98,7 @@ function buildButtonDrop(list,buttonfunc, buttontext){
     buttondropdiv.className = "buttondrop"
     let select = document.createElement("select");
     select.setAttribute("id", "categoryquantity");
-    select.className="dropdown-toggle w-1/12 mr-2 mt-5 inline-block px-2 py-1.5 text-black font-medium text-sm uppercase rounded hover:cursor-pointer transition duration-150 ease-in-out";
+    select.className="dropdown-toggle w-1.5/12 mr-2 mt-5 inline-block px-2 py-1.5 text-black font-medium text-sm uppercase rounded hover:cursor-pointer transition duration-150 ease-in-out";
     for (var i=0; i<list.length; i++){
         let option = document.createElement("option");
         option.value = list[i]
@@ -179,7 +179,6 @@ export async function buildProducts(loaded) {
  async function buildProduct(currentproduct){
     selectedproduct = currentproduct;
     let maindiv = document.getElementById("main");
-    maindiv.className="absolute"
     maindiv.innerHTML=""; 
     let solodiv = document.createElement("div");
     solodiv.className=("product-display");

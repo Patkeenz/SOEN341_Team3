@@ -1,6 +1,7 @@
-import { Card } from "react-bootstrap";
 import { confirmOrder, deliveryTime } from "./server/order.js";
 import {getItems, removeItem, updateQuantity} from "./server/cart.js"
+import { FaCcPaypal, FaCcVisa, FaCcMastercard } from 'react-icons/fa'
+import ReactDOM, { render } from 'react-dom';
 
 
 export async function buildCheckout(loaded) {
@@ -22,21 +23,22 @@ export async function buildCheckout(loaded) {
             if(products[i].name!=null){
             var product = products[i];
             let row = document.createElement("tr");
+            row.className = "border-t border-b border-red-300";
             let imgCol = document.createElement("th");
             imgCol.className = "imgCol";
             let pic = document.createElement("img");
             pic.setAttribute("src", products[i].link);
-            pic.className = "productImage";
+            pic.className = "p-1 w-11/12 bg-white border rounded max-w-sm justify-self-center bg-opacity-25"; //productImage px-10 pt-10
             let infoCol = document.createElement("th");
-            let prodName = document.createElement("h1");
+            let prodName = document.createElement("p");
             prodName.innerHTML = product.name;
             prodName.className = "slightlyMarginedItem";
             let lineBreak = document.createElement("br");
             let prodQuant = document.createElement("p");
             prodQuant.innerHTML = product.quantity;
             let priceCol = document.createElement("th");
-            let prodPrice = document.createElement("h3");
-            prodPrice.innerHTML = product.price+ " x " +product.quantity + " = " + product.price*product.quantity + "$";
+            let prodPrice = document.createElement("p");
+            prodPrice.innerHTML = product.price+ " x " +product.quantity + " = " + (product.price*product.quantity).toFixed(2) + "$";
             prices.push(product.price*product.quantity);
             subtotal += parseFloat(product.price*product.quantity);
             let editCol = document.createElement("th");
@@ -70,11 +72,11 @@ export async function buildCheckout(loaded) {
                 let priceheader = document.createElement("p")
                 priceheader.className = "right";
                 if(i<prices.length-1){
-                     priceheader.innerHTML = prices[i] + "$";
+                     priceheader.innerHTML = prices[i].toFixed(2) + "$";
                 }
                 else{
                     let utag = document.createElement("u");
-                    utag.innerHTML = "+ " + prices[i];
+                    utag.innerHTML = "+ " + prices[i].toFixed(2);
                     priceheader.appendChild(utag)
                 }
             maindiv.append(priceheader);
@@ -82,7 +84,7 @@ export async function buildCheckout(loaded) {
 
         let subtotalheader = document.createElement("p");
         subtotalheader.className = "right";
-        subtotalheader.innerHTML = "Subtotal: " + subtotal + "$";
+        subtotalheader.innerHTML = "Subtotal: " + subtotal.toFixed(2) + "$";
         maindiv.append(subtotalheader);
 
         maindiv.append(shippingheader);
@@ -95,15 +97,25 @@ export async function buildCheckout(loaded) {
         totalheader.className = "right";
         totalheader.innerHTML = "Total: " + (subtotal*1.15+shipping).toFixed(2) + "$";
 
+        let payIcon = document.createElement("div");
         let payButton = document.createElement("button");
         payButton.innerHTML = "Choose a Payment Method";
-        payButton.className= "button6";
+        payButton.className= "inline-block justify-self-center px-2 py-1.5 bg-green-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-green-700 hover:cursor-pointer";
         payButton.onclick = function(){
             paymentBuilder();
         }
+        payIcon.className = "grid mb-2";
+        let iconContainer = document.createElement("div");
+        iconContainer.className = "flex justify-self-center"
+        const icons = [<FaCcMastercard className=" mx-2" size={42}/>, 
+                        <FaCcVisa className=" mx-2" size={42}/>,
+                        <FaCcPaypal className=" mx-2" size={42}/>];
         maindiv.append(taxheader);
         maindiv.append(totalheader);
-        maindiv.append(payButton);
+        ReactDOM.render(icons, iconContainer)
+        payIcon.appendChild(iconContainer)
+        payIcon.appendChild(payButton)
+        maindiv.append(payIcon);
 
     return products
   }
@@ -120,6 +132,7 @@ export async function buildCheckout(loaded) {
       // create and append a form for all info
       let infoForm = document.createElement("form");;
       maindiv.append(infoForm);
+      maindiv.className = "mb-4"; 
 
       // create a div within the credit card form
       let cardsDiv = document.createElement("div");
@@ -134,30 +147,36 @@ export async function buildCheckout(loaded) {
       cardNumberInput.type = "text";
       cardNumberInput.setAttribute("class", "labelBorder");
       cardNumberInput.id = "cardNumber";
+      cardNumberInput.className = "ml-2 border-2 border-gray-400 rounded-md focus:outline-none focus:border-blue-500 transition-colors";
       let cardNumberLabel = document.createElement("label");
       cardNumberLabel.setAttribute("for", "cardNumber");
       cardNumberLabel.setAttribute("class", "fieldRequired");
       cardNumberLabel.innerHTML = "Card Number:";
+      cardNumberLabel.className = "font-bold text-sm ml-2";
 
       // insert textbox and label for card expiraion date
       let cardDateInput = document.createElement("input");
       cardDateInput.type = "text";
       cardDateInput.id = "cardDate";
       cardDateInput.setAttribute("class", "labelBorder");
+      cardDateInput.className = "ml-2 border-2 border-gray-400 rounded-md focus:outline-none focus:border-blue-500 transition-colors";
       let cardDateLabel = document.createElement("label");
       cardDateLabel.setAttribute("for", "cardDate");
       cardDateLabel.setAttribute("class", "fieldRequired");
       cardDateLabel.innerHTML = "Expiration Date:";
+      cardDateLabel.className = "font-bold text-sm ml-2";
 
       // insert textbox and label for card expiraion date
       let cardCVVInput = document.createElement("input");
       cardCVVInput.type = "text";
       cardCVVInput.id = "cardCVV";
       cardCVVInput.setAttribute("class", "labelBorder");
+      cardCVVInput.className = "ml-2 border-2 border-gray-400 rounded-md focus:outline-none focus:border-blue-500 transition-colors";
       let cardCVVLabel = document.createElement("label");
       cardCVVLabel.setAttribute("for", "cardCVV");
       cardCVVLabel.setAttribute("class", "fieldRequired");
       cardCVVLabel.innerHTML = "CVV Numbers:";
+      cardCVVLabel.className = "font-bold text-sm ml-2";
 
       // create break line tags
       let breakLine1 = document.createElement("br");
@@ -196,70 +215,84 @@ export async function buildCheckout(loaded) {
       firstNameInput.type = "text";
       firstNameInput.id = "firstName";
       firstNameInput.setAttribute("class", "labelBorder");
+      firstNameInput.className = "ml-2 border-2 border-gray-400 rounded-md focus:outline-none focus:border-blue-500 transition-colors";
       let firstNameLabel = document.createElement("label");
       firstNameLabel.setAttribute("for", "firstName");
       firstNameLabel.setAttribute("class","fieldRequired");
       firstNameLabel.innerHTML = "First Name:";
+      firstNameLabel.className = "font-bold text-sm ml-2";
 
       // insert textbox and label for last name
       let lastNameInput = document.createElement("input");
       lastNameInput.type = "text";
       lastNameInput.id = "lastName";
       lastNameInput.setAttribute("class", "labelBorder");
+      lastNameInput.className = "ml-2 border-2 border-gray-400 rounded-md focus:outline-none focus:border-blue-500 transition-colors";
       let lastNameLabel = document.createElement("label");
       lastNameLabel.setAttribute("for", "lastName");
       lastNameLabel.setAttribute("class","fieldRequired");
       lastNameLabel.innerHTML = "Last Name:";
+      lastNameLabel.className = "font-bold text-sm ml-2";
       
       // insert textbox and label for last name
       let phoneInput = document.createElement("input");
       phoneInput.type = "text";
       phoneInput.id = "phoneNumber";
       phoneInput.setAttribute("class", "labelBorder");
+      phoneInput.className = "ml-2 border-2 border-gray-400 rounded-md focus:outline-none focus:border-blue-500 transition-colors";
 
       let phoneLabel = document.createElement("label");
       phoneLabel.setAttribute("for", "phoneNumber");
       phoneLabel.setAttribute("class","fieldRequired");
       phoneLabel.innerHTML = "Phone number:";
+      phoneLabel.className = "font-bold text-sm ml-2";
       // insert textbox and label for address
       let addressInput = document.createElement("input");
       addressInput.type = "text";
       addressInput.id = "address";
       addressInput.setAttribute("class", "labelBorder");
+      addressInput.className = "ml-2 border-2 border-gray-400 rounded-md focus:outline-none focus:border-blue-500 transition-colors";
       let addressLabel = document.createElement("label");
       addressLabel.setAttribute("for", "address");
       addressLabel.setAttribute("class","fieldRequired");
       addressLabel.innerHTML = "Address:";
+      addressLabel.className = "font-bold text-sm ml-2";
 
       // insert textbox and label for city
       let cityInput = document.createElement("input");
       cityInput.type = "text";
       cityInput.id = "city";
       cityInput.setAttribute("class", "labelBorder");
+      cityInput.className = "ml-2 border-2 border-gray-400 rounded-md focus:outline-none focus:border-blue-500 transition-colors";
       let cityLabel = document.createElement("label");
       cityLabel.setAttribute("for", "city");
       cityLabel.setAttribute("class","fieldRequired");
       cityLabel.innerHTML = "City:";
+      cityLabel.className = "font-bold text-sm ml-2";
 
       // insert textbox and label for country
       let countryInput = document.createElement("input");
       countryInput.type = "text";
       countryInput.id = "country";
       countryInput.setAttribute("class", "labelBorder");
+      countryInput.className = "ml-2 border-2 border-gray-400 rounded-md focus:outline-none focus:border-blue-500 transition-colors";
       let countryLabel = document.createElement("label");
       countryLabel.setAttribute("for", "country");
       countryLabel.setAttribute("class","fieldRequired");
       countryLabel.innerHTML = "Country:";
+      countryLabel.className = "font-bold text-sm ml-2";
 
       // insert textbox and label for postal code
       let postalCodeInput = document.createElement("input");
       postalCodeInput.type = "text";
       postalCodeInput.id = "postaCode";
       postalCodeInput.setAttribute("class", "labelBorder");
+      postalCodeInput.className = "ml-2 border-2 border-gray-400 rounded-md focus:outline-none focus:border-blue-500 transition-colors";
       let postalCodeLabel = document.createElement("label");
       postalCodeLabel.setAttribute("for", "postalCode");
       postalCodeLabel.setAttribute("class","fieldRequired");
       postalCodeLabel.innerHTML = "Postal code:";
+      postalCodeLabel.className = "font-bold text-sm ml-2";
 
 
       // create break line tags
@@ -317,18 +350,22 @@ export async function buildCheckout(loaded) {
 
 
       // create an order button
+      let orderButtonContainer = document.createElement("div")
+      orderButtonContainer.className = "grid"
       let orderButton = document.createElement("input");
       orderButton.setAttribute("type", "submit");
       orderButton.setAttribute("class", "updateButton");
+      orderButton.className= "inline-block justify-self-center mt-10 px-2 py-1.5 bg-green-600 text-white font-bold text-sm leading-tight uppercase rounded hover:bg-green-700 hover:cursor-pointer";
       orderButton.addEventListener("click", function(event){
         event.preventDefault();
         buildOrderConfirmation(inputs); 
       });
       
-      orderButton.innerHTML = "Order";
+      orderButton.value = "Confirm Order";
 
       // append order button
-      infoForm.append(orderButton);
+      orderButtonContainer.appendChild(orderButton)
+      infoForm.append(orderButtonContainer);
 }
 
   export async function buildOrderConfirmation(input, loaded)

@@ -121,9 +121,57 @@
   border-right: 3px solid #a0172e;
 }
 
+.updateShippingButton
+{
+  width: 130px;
+  height: 40px;
+  background-color: #3152d6;
+  color: white;
+  border-radius: 8px;
+  float: right;
+  border-bottom: 3px solid #3624bc;
+  border-right: 3px solid #1a64e5;
+}
+
+.updateDeliveredButton
+{
+  width: 130px;
+  height: 40px;
+  background-color: #288f2f;
+  color: white;
+  border-radius: 8px;
+  float: right;
+  border-bottom: 3px solid #0c543e;
+  border-right: 3px solid #0e9154;
+}
+
 .deliveredIcon
 {
   background-color: green;
+  width: 90px;
+  height: 30px;
+  border-radius: 20px;
+  color: rgb(223, 240, 221);
+  padding:3px;
+  text-align: center;
+  float:left;
+}
+
+.processingIcon
+{
+  background-color: grey;
+  width: 90px;
+  height: 30px;
+  border-radius: 20px;
+  color: rgb(223, 240, 221);
+  padding:3px;
+  text-align: center;
+  float:left;
+}
+
+.shippedIcon
+{
+  background-color: blue;
   width: 90px;
   height: 30px;
   border-radius: 20px;
