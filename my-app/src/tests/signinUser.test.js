@@ -12,8 +12,9 @@ const { login } = useAuth();
 
 test('checks if sign up function works', async () => {
     var inte = 1;
+    auth = getAuth();
   
-    createUserWithEmailAndPassword("helloworld", "testEmail@test.com", "helloo1!");
+    createUserWithEmailAndPassword(auth, "testEmail@test.com", "helloo1!");
     await login("helloworld", "hello1!");
     if(currentUser.displayName == "helloworld")
     {
@@ -26,5 +27,3 @@ test('checks if sign up function works', async () => {
 
     expect(isInteger(inte)).toBe(true);
   });
-    
-    
