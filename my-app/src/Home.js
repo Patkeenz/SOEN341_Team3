@@ -4,7 +4,7 @@ import './Home.css';
 const Home = () => {
     buildProducts(false);
     return (   
-        <div className="home" id="main">       
+        <div className="mx-auto mb-3 align-items-center justify-content-center" id="main">       
         </div>
     );
 }
