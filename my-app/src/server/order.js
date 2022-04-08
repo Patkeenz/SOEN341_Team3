@@ -146,6 +146,7 @@ export async function getOrdersList() {
                 const order = {orderdate: split[0], items: items, deliverydate: split[2], address: split[3], status: split[4], spot: i};
                 orders.push(order)
             }
+            orders.reverse();
             return orders;
         }
 }
@@ -206,6 +207,7 @@ var allorders = await getAllOrders();
     }
     })
     console.log(orders)
+    orders.reverse();
         return orders;
     }
 }
