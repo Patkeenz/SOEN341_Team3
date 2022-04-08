@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from 'firebase/auth'
 import app from '../server/index.js';
 import {getDatabase, get, ref, set} from 'firebase/database';
 import { FaUser } from 'react-icons/fa'
@@ -252,6 +252,10 @@ export function AuthProvider( { children }) {
         return auth.signOut().then(() => {console.log("logged out")})
     }
 
+    async function resetPassword(email) {
+        return sendPasswordResetEmail(auth, email)
+    }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(person => {
             setCurrentUser(person)
@@ -267,7 +271,8 @@ export function AuthProvider( { children }) {
         buildAdmin,
         login,
         logout,
-        userType
+        userType,
+        resetPassword
     }
   return (
     <AuthContext.Provider value={value}>
