@@ -380,9 +380,6 @@ export async function buildCheckout(loaded) {
     // boolean var: true if all requirements are met
     var formRequirementsMet = true;
 
-    // crete default cards
-    let cards = [["12345", "12/34", "123"], ["23456", "23/45", "234"], ["34567", "34/56", "345"], 
-                    ["45678", "45/67", "456"], ["56789", "56/78", "567"]];
 
     // make sure all fields are filled
     var allFieldsFull = true;
@@ -413,40 +410,34 @@ export async function buildCheckout(loaded) {
     var country = input[9].value;
 
     // check the card matches an existing card
-    var validCard = false;
-    for(var i = 0; i < cards.length; i++) 
-    {
-        if(cards[i][0] == cardNum && cards[i][1] == cardDate && cards[i][2] == cardCVV)
-        {
-            validCard = true;
-        }
-    }
+    var validCard = creditCheck(cardNum, cardDate, cardCVV);
     if(!validCard)
     {
         formRequirementsMet = false;
     }
+
 
     // verify that the first name last name and city are letters
     var validFirst = true;
     var validLast = true;
     var validCity = true;
     var validCountry = true;
-    if(!/^[a-zA-Z\s]+$/.test(first))
+    if(validString(first))
     {
         formRequirementsMet = false;
         validFirst = false;
     }
-    if(!/^[a-zA-Z\s]+$/.test(last))
+    if(validString(last))
     {
         formRequirementsMet = false;
         validLast = false;
     }
-    if(!/^[a-zA-Z\s]+$/.test(city))
+    if(validString(city))
     {
         formRequirementsMet = false;
         validCity = false;
     }
-    if(!/^[a-zA-Z\s]+$/.test(country))
+    if(validString(country))
     {
         formRequirementsMet = false;
         validCountry = false;
@@ -530,3 +521,36 @@ export async function buildCheckout(loaded) {
         }
     }
   }
+
+  export function creditCheck(cardNum, cardDate, cardCVV)
+  {
+        // create default cards
+        let cards = [["12345", "12/34", "123"], ["23456", "23/45", "234"], ["34567", "34/56", "345"], 
+        ["45678", "45/67", "456"], ["56789", "56/78", "567"]];
+
+        var validCard = false;
+        for(var i = 0; i < cards.length; i++) 
+        {
+            if(cards[i][0] == cardNum && cards[i][1] == cardDate && cards[i][2] == cardCVV)
+            {
+                validCard = true;
+                return true;
+            }
+        }
+        if(validCard == false)
+        {
+            return false;
+        }
+    }
+
+    export function validString(str)
+    {
+        if(!/^[a-zA-Z\s]+$/.test(str))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
