@@ -422,22 +422,22 @@ export async function buildCheckout(loaded) {
     var validLast = true;
     var validCity = true;
     var validCountry = true;
-    if(validString(first))
+    if(invalidString(first))
     {
         formRequirementsMet = false;
         validFirst = false;
     }
-    if(validString(last))
+    if(invalidString(last))
     {
         formRequirementsMet = false;
         validLast = false;
     }
-    if(validString(city))
+    if(invalidString(city))
     {
         formRequirementsMet = false;
         validCity = false;
     }
-    if(validString(country))
+    if(invalidString(country))
     {
         formRequirementsMet = false;
         validCountry = false;
@@ -445,7 +445,7 @@ export async function buildCheckout(loaded) {
 
     // verify that the phone number is 10 digits
     var validPhone = true;
-    if(!/^\d+$/.test(phone) || phone.length != 10)
+    if(invalidPhone(phone))
     {
         formRequirementsMet = false;
         validPhone = false;
@@ -453,7 +453,7 @@ export async function buildCheckout(loaded) {
 
     // verify that the postal code is in an accepted format
     var validPostal = true;
-    if(!/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i.test(postal))
+    if(invalidPostal(postal))
     {
         formRequirementsMet = false;
         validPostal = false;
@@ -543,9 +543,33 @@ export async function buildCheckout(loaded) {
         }
     }
 
-    export function validString(str)
+    export function invalidString(str)
     {
         if(!/^[a-zA-Z\s]+$/.test(str))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    export function invalidPhone(phone)
+    {
+        if(!/^\d+$/.test(phone) || phone.length != 10)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    export function invalidPostal(postal)
+    {
+        if(!/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i.test(postal))
         {
             return true;
         }
