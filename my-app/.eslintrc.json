@@ -4,8 +4,8 @@
         "es2021": true
     },
     "extends": [
-        "plugin:react/recommended",
-        "standard"
+        "eslint:recommended",
+        "plugin:react/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -18,5 +18,21 @@
         "react"
     ],
     "rules": {
+        "indent": [
+            "off",
+            4
+        ],
+        "quotes": [
+            "off",
+            "single"
+        ],
+        "semi": [
+            "off",
+            "always"
+        ],
+        "multine-comment-style": [
+            "warn",
+            "always"
+        ]
     }
 }
