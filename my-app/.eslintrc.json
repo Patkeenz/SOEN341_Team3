@@ -28,9 +28,6 @@
         ],
         "semi": [
             "error"
-        ],
-        "camelcase": [
-            {"properties": "always"}
         ]
     }
 }
