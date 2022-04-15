@@ -20,7 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "style:eslint": "eslint ./src/**/*",
+    "style:eslint": "eslint './src/**/*'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
