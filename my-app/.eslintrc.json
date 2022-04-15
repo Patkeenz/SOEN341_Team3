@@ -19,20 +19,18 @@
     ],
     "rules": {
         "indent": [
-            "off",
+            "warn",
             4
         ],
         "quotes": [
-            "off",
-            "single"
+            "warn",
+            "double"
         ],
         "semi": [
-            "off",
-            "always"
+            "error"
         ],
-        "multine-comment-style": [
-            "warn",
-            "always"
+        "camelcase": [
+            {"properties": "always"}
         ]
     }
 }
